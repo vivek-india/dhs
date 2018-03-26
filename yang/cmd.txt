@@ -1,0 +1,19 @@
+1. Tree Generation
+------------------
+pyang -f tree product.yang
+
+2. Skeleton json Generation
+---------------------------
+python gen_skeleton.py product.yang  | python -m json.tool | more
+
+3 Generate class hierarchy from a yang file
+-------------------------------------------
+    3.1 Set pyangbind environment
+    ----------------------------
+    export PYBINDPLUGIN=`/usr/bin/env python -c \
+    'import pyangbind; import os; print ("{}/plugin".format(os.path.dirname(pyangbind.__file__)))'`
+    echo $PYBINDPLUGIN
+
+    3.2 Generate class file
+    -----------------------
+    pyang --plugindir $PYBINDPLUGIN -f pybind -o yang/product.py product.yang

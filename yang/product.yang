@@ -1,0 +1,89 @@
+module product {
+    namespace "http://dhs.example.com/module";
+
+    prefix product;
+
+    organization "Dhanraj Hardware Stores";
+    contact viveks.singh@gmail.com;
+    description "This module defines product";
+
+
+    revision 2018-03-10 {
+        description "Initial revision.";
+    }
+
+    grouping property {
+        leaf name {
+            type string;
+        }
+
+        leaf val {
+            type string;
+        }
+
+        leaf unit {
+            type string;
+        }
+    }
+
+    leaf name {
+        type string;
+    }
+
+    leaf vendor-name {
+        type string;
+    }
+
+    leaf min-threshhold{
+        type uint32;
+    }
+
+    leaf max-threshhold{
+        type uint32;
+    }
+
+    leaf property-count {
+        type uint8;
+    }
+
+    leaf property-max-count {
+        type uint8;
+        default 9;
+    }
+
+    container property-1 {
+        uses property;
+    }
+
+    container property-2 {
+        uses property;
+    }
+
+    container property-3 {
+        uses property;
+    }
+
+    container property-4 {
+        uses property;
+    }
+
+    container property-5 {
+        uses property;
+    }
+
+    container property-6 {
+        uses property;
+    }
+
+    container property-7 {
+        uses property;
+    }
+
+    container property-8 {
+        uses property;
+    }
+
+    container property-9 {
+        uses property;
+    }
+}

@@ -1,0 +1,201 @@
+module product {
+    namespace "http://dhs.example.com/module";
+
+    prefix product;
+
+    organization "Dhanraj Hardware Stores";
+    contact viveks.singh@gmail.com;
+    description "This module defines product";
+
+
+    revision 2018-03-10 {
+        description "Initial revision.";
+    }
+
+    leaf name {
+        type string;
+    }
+
+    leaf vendor-name {
+        type string;
+    }
+
+    leaf min-threshhold{
+        type uint32;
+    }
+
+    leaf max-threshhold{
+        type uint32;
+    }
+
+    leaf property-count {
+        type uint8;
+    }
+
+    leaf property-max-count {
+        type uint8;
+        default 9;
+    }
+
+    container property-1 {
+        leaf name {
+            type string;
+        }
+
+        leaf type {
+            type string;
+        }
+
+        leaf val {
+            type string;
+        }
+
+        leaf unit {
+            type string;
+        }
+    }
+
+    container property-2 {
+        leaf name {
+            type string;
+        }
+
+        leaf type {
+            type string;
+        }
+
+        leaf val {
+            type string;
+        }
+
+        leaf unit {
+            type string;
+        }
+    }
+
+    container property-3 {
+        leaf name {
+            type string;
+        }
+
+        leaf type {
+            type string;
+        }
+
+        leaf val {
+            type string;
+        }
+
+        leaf unit {
+            type string;
+        }
+    }
+
+    container property-4 {
+        leaf name {
+            type string;
+        }
+
+        leaf type {
+            type string;
+        }
+
+        leaf val {
+            type string;
+        }
+
+        leaf unit {
+            type string;
+        }
+    }
+
+    container property-5 {
+        leaf name {
+            type string;
+        }
+
+        leaf type {
+            type string;
+        }
+
+        leaf val {
+            type string;
+        }
+
+        leaf unit {
+            type string;
+        }
+    }
+
+    container property-6 {
+        leaf name {
+            type string;
+        }
+
+        leaf type {
+            type string;
+        }
+
+        leaf val {
+            type string;
+        }
+
+        leaf unit {
+            type string;
+        }
+    }
+
+    container property-7 {
+        leaf name {
+            type string;
+        }
+
+        leaf type {
+            type string;
+        }
+
+        leaf val {
+            type string;
+        }
+
+        leaf unit {
+            type string;
+        }
+    }
+
+    container property-8 {
+        leaf name {
+            type string;
+        }
+
+        leaf type {
+            type string;
+        }
+
+        leaf val {
+            type string;
+        }
+
+        leaf unit {
+            type string;
+        }
+    }
+
+    container property-9 {
+        leaf name {
+            type string;
+        }
+
+        leaf type {
+            type string;
+        }
+
+        leaf val {
+            type string;
+        }
+
+        leaf unit {
+            type string;
+        }
+    }
+}

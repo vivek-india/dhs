@@ -1,0 +1,13 @@
+1. Set Virtual Environment
+
+# 1. INSTALL mysql
+result=`dpkg --get-selections | grep mysql`
+if [ 'x' == x$result ]
+then
+    echo 'mysql server not installed'
+    sudo apt-get update
+    sudo apt-get install mysql-server
+    mysql_secure_installation
+else
+    echo 'Installed'
+fi
