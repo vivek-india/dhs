@@ -22,6 +22,9 @@ requires = [
     'pymysql',
     'pyangbind',
     'jsonpickle',
+    'xlrd',
+    'pyyaml',
+    'xlsxwriter',
 ]
 
 tests_require = [
