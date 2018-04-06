@@ -22,6 +22,7 @@ class ProductParser(object):
         # self.show_instances()
         # self.generate_excel()
         self.generate_pyramid_model()
+        self.generate_pyramid_view()
 
     def validate_instances(self):
 
@@ -93,7 +94,7 @@ class ProductParser(object):
 from .meta import Base
 
 
-class {{class_name}}(Base):
+class {{class_name}}_cls(Base):
     __tablename__ = '{{class_name}}'
 
     id = Column(Integer, primary_key=True)
@@ -101,7 +102,7 @@ class {{class_name}}(Base):
     {{p.name}} = Column({{p.type}})
     {% endfor %}
 
-Index('{{class_name}}_index', {{class_name}}.{{class_name}}_id, unique=True, mysql_length=255)
+Index('{{class_name}}_index', {{class_name}}_cls.{{class_name}}_id, unique=True, mysql_length=255)
 		'''
         t = jinja2.Template(s)
         config = t.render(class_name=self._name, props=props)
@@ -113,6 +114,33 @@ Index('{{class_name}}_index', {{class_name}}.{{class_name}}_id, unique=True, mys
         from subprocess import call
         call(["../../venv/bin/initialize_dhs_db", "../../development.ini"])
 
+
+    def generate_pyramid_view(self):
+
+        s = '''from pyramid.response import Response
+from pyramid.view import view_config
+from sqlalchemy.exc import DBAPIError
+
+from ..models import {{class_name}}
+
+import jsonpickle
+
+
+@view_config(route_name='{{class_name}}_view', renderer='json')
+def {{class_name}}_view(request):
+
+    query = request.dbsession.query({{class_name}}.{{class_name}}_cls)
+    print query.all()
+
+    return {'result': [{'A': 1}, {'B': 2}], 'error': None }
+        '''
+
+        t = jinja2.Template(s)
+        config = t.render(class_name=self._name)
+        #print config
+
+        with open('../views/' + self._name + '.py', 'w') as fd:
+		    fd.write(config)
 
     def create_instances(self):
 
