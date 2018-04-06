@@ -7,12 +7,12 @@ properties:
     id:
         description: A combination of characters used to identify each
                      instance of this product type.
-        type: string
+        type: Text
         unit:
             - none
         position: 0 
     thread:
-        type: String
+        type: Text
         unit:
             - half
             - full

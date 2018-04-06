@@ -17,6 +17,7 @@ from ..models import (
     )
 from ..models import MyModel
 from ..models import Product
+from ..models import lst_products
 
 
 def usage(argv):

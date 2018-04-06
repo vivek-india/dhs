@@ -8,7 +8,7 @@ properties:
         description: A combination of characters used to identify each
                      instance of this product type.
         display_name: id
-        type: String
+        type: Text
         unit:
             - none
         position: 0 

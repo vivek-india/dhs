@@ -76,9 +76,10 @@ class ProductParser(object):
         print self._name
         props = []
         for v in self._properties:
-            if v != 'id':
-            	props.append({'name': v, 'type': self._props_dict[v]['type']})
-            #print ("{} {} ".format(v, self._props_dict[v]['type']))
+            if v == 'id':
+                props.append({'name': self._name + '_id', 'type': self._props_dict[v]['type']})
+            else:
+                props.append({'name': v, 'type': self._props_dict[v]['type']})
 
         s = '''from sqlalchemy import (
     Column,
@@ -95,12 +96,12 @@ from .meta import Base
 class {{class_name}}(Base):
     __tablename__ = '{{class_name}}'
 
-    id = Column(Text, primary_key=True)
+    id = Column(Integer, primary_key=True)
     {% for p in props %}
     {{p.name}} = Column({{p.type}})
     {% endfor %}
 
-Index('{{class_name}}_index', {{class_name}}.id, unique=True, mysql_length=255)
+Index('{{class_name}}_index', {{class_name}}.{{class_name}}_id, unique=True, mysql_length=255)
 		'''
         t = jinja2.Template(s)
         config = t.render(class_name=self._name, props=props)
@@ -108,19 +109,33 @@ Index('{{class_name}}_index', {{class_name}}.id, unique=True, mysql_length=255)
         with open('../models/' + self._name + '.py', 'w') as fd:
 			fd.write(config)
 
+        # initialize db
+        from subprocess import call
+        call(["../../venv/bin/initialize_dhs_db", "../../development.ini"])
 
+
+    def create_instances(self):
+
+        for v in self._instances:
+            s = ''
+            for key, val in v.iteritems():
+                s += key + ": " + str(val)
+            print ("{}".format(s))
 
     
 if __name__ == "__main__":
-    for filename in glob.glob('products/*.yaml'):
+    # Generate import list
+    with open('../models/lst_products.py', 'w') as lst_fd:
+        for filename in glob.glob('products/*.yaml'):
 
-        with open(filename, 'r') as fd:
-            try:
-                d = yaml.load(fd)
-                # json_string = json.dumps(d)
-                # print json_string
-                pp = ProductParser(d)
+            with open(filename, 'r') as fd:
+                try:
+                    d = yaml.load(fd)
+                    # json_string = json.dumps(d)
+                    # print json_string
+                    pp = ProductParser(d)
 
-                pp.parse_instances()
-            except yaml.YAMLError as exc:
-                print(exc)
+                    pp.parse_instances()
+                    lst_fd.write('from ..models import ' + pp._name + '\n')
+                except yaml.YAMLError as exc:
+                    print(exc)
