@@ -150,6 +150,28 @@ def {{class_name}}_view(request):
                 s += key + ": " + str(val)
             print ("{}".format(s))
 
+
+def generate_pyramid_route():
+
+    s = '''def includeme(config):
+    config.add_static_view('static', 'static', cache_max_age=3600)
+    config.add_route('home', '/')
+    config.add_route('products', '/products')
+    {% for rt in route_views %}
+    config.add_route('{{rt}}_view', '/{{rt}}_view')
+    {% endfor %}
+    '''
+
+    route_views = [ f[:-5] for f in glob.glob('products/*.yaml')]
+    route_views = [ rv.split('/')[1] for rv in route_views ]
+    # print route_views
+
+    t = jinja2.Template(s)
+    config = t.render(route_views=route_views)
+    # print config
+
+    with open('../routes.py', 'w') as rt_fd:
+        rt_fd.write(config)
     
 if __name__ == "__main__":
     # Generate import list
@@ -167,3 +189,4 @@ if __name__ == "__main__":
                     lst_fd.write('from ..models import ' + pp._name + '\n')
                 except yaml.YAMLError as exc:
                     print(exc)
+    generate_pyramid_route()
