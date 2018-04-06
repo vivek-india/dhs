@@ -23,6 +23,7 @@ class ProductParser(object):
         # self.generate_excel()
         self.generate_pyramid_model()
         self.generate_pyramid_view()
+        # self.create_instances()
 
     def validate_instances(self):
 
@@ -81,6 +82,7 @@ class ProductParser(object):
                 props.append({'name': self._name + '_id', 'type': self._props_dict[v]['type']})
             else:
                 props.append({'name': v, 'type': self._props_dict[v]['type']})
+                props.append({'name': v + '_display_name', 'type': 'Text'})
 
         s = '''from sqlalchemy import (
     Column,
@@ -106,13 +108,10 @@ Index('{{class_name}}_index', {{class_name}}_cls.{{class_name}}_id, unique=True,
 		'''
         t = jinja2.Template(s)
         config = t.render(class_name=self._name, props=props)
-        # print config
+        print config
         with open('../models/' + self._name + '.py', 'w') as fd:
-			fd.write(config)
+		    fd.write(config)
 
-        # initialize db
-        from subprocess import call
-        call(["../../venv/bin/initialize_dhs_db", "../../development.ini"])
 
 
     def generate_pyramid_view(self):
@@ -186,7 +185,11 @@ if __name__ == "__main__":
                     pp = ProductParser(d)
 
                     pp.parse_instances()
-                    lst_fd.write('from ..models import ' + pp._name + '\n')
+                    lst_fd.write('from ..models.' + pp._name + ' import ' + pp._name + '_cls\n')
                 except yaml.YAMLError as exc:
                     print(exc)
     generate_pyramid_route()
+
+    # initialize db
+    from subprocess import call
+    call(["../../venv/bin/initialize_dhs_db", "../../development.ini"])
