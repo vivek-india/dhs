@@ -36,10 +36,12 @@ virtualenv and install Cookiecutter in that environment.
             venv/bin/python setup.py install (Use install once dev is done)
 
         8. Create Database
-            mysql -uroot -pcloud123
-            create database dhs_db
+            * mysql -uroot -pcloud123
+              create database dhs_db
+            * Generate Product Tables
+              ./venv/bin/python parse_product_yaml.py
 
-        8. Configure the database:
+        9. Configure the database:
             venv/bin/initialize_dhs_db development.ini
         
         Run your project's tests.
