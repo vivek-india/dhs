@@ -11,19 +11,19 @@ class ProductParser(object):
         self._nickname = yaml_dict['nick_name']
         self._props_dict = yaml_dict['properties']
         self._properties = []
-        for key, val in yaml_dict['properties'].iteritems():
-            self._properties.insert(val['position'], key)
+        for ky, val in yaml_dict['properties'].iteritems():
+            self._properties.insert(val['position'], ky)
             
         self._instances = yaml_dict['instances']
 
     def parse_instances(self):
         self.validate_instances()
         self.set_id()
-        # self.show_instances()
-        # self.generate_excel()
+        #self.show_instances()
+        self.generate_excel()
         self.generate_pyramid_model()
         self.generate_pyramid_view()
-        # self.create_instances()
+        self.create_instances()
 
     def validate_instances(self):
 
@@ -35,24 +35,24 @@ class ProductParser(object):
                                  .format(v.keys(), self._properties))
 
     def set_id(self):
-        # Set id
+        # Set key
         for v in self._instances:
-            _id = v['id']['value']
+            _id = v['key']['value']
 
             s = ''
             if _id == 'auto':
                 s += self._nickname
                 for k in self._properties[1:]:
-                    s += '-' + k[0:3] + v[k]['value'][0:3]
-                v['id']['value'] = s
-                v['id']['display_name'] = s
+                    s += '-' + k + v[k]['value']
+                v['key']['value'] = s
+                v['key']['display_name'] = s
 
     def show_instances(self):
 
         for v in self._instances:
             s = ''
-            for key, val in v.iteritems():
-                s += key + ": " + str(val)
+            for ky, val in v.iteritems():
+                s += ky + ": " + str(val)
             print ("{}".format(s))
 
     def generate_excel(self):
@@ -65,9 +65,9 @@ class ProductParser(object):
 
         for v in self._instances:
             COL = 0
-            for key in self._properties:
-                # print ("{}".format(v[key]['display_name']))
-                worksheet.write(ROW, COL,     v[key]['display_name'])
+            for ky in self._properties:
+                # print ("{}".format(v[ky]['display_name']))
+                worksheet.write(ROW, COL,     v[ky]['display_name'])
                 COL += 1
             ROW += 1
 
@@ -78,11 +78,8 @@ class ProductParser(object):
         print self._name
         props = []
         for v in self._properties:
-            if v == 'id':
-                props.append({'name': self._name + '_id', 'type': self._props_dict[v]['type']})
-            else:
-                props.append({'name': v, 'type': self._props_dict[v]['type']})
-                props.append({'name': v + '_display_name', 'type': 'Text'})
+            props.append({'name': v, 'type': self._props_dict[v]['type']})
+            props.append({'name': v + '_display_name', 'type': 'Text'})
 
         s = '''from sqlalchemy import (
     Column,
@@ -104,11 +101,11 @@ class {{class_name}}_cls(Base):
     {{p.name}} = Column({{p.type}})
     {% endfor %}
 
-Index('{{class_name}}_index', {{class_name}}_cls.{{class_name}}_id, unique=True, mysql_length=255)
+Index('{{class_name}}_index', {{class_name}}_cls.key, unique=True, mysql_length=255)
 		'''
         t = jinja2.Template(s)
         config = t.render(class_name=self._name, props=props)
-        print config
+        # print config
         with open('../models/' + self._name + '.py', 'w') as fd:
 		    fd.write(config)
 
@@ -143,11 +140,36 @@ def {{class_name}}_view(request):
 
     def create_instances(self):
 
-        for v in self._instances:
-            s = ''
-            for key, val in v.iteritems():
-                s += key + ": " + str(val)
-            print ("{}".format(s))
+        with open('/tmp/' + self._name + '.sql', 'w') as db_fd:
+            for inst in self._instances:
+                value_lst = []
+
+
+                s = 'INSERT into ' + self._name + ' ('
+                for v in self._properties:
+                    s += '`' + v + '`, `' + v + '_display_name`, '
+
+                    if self._props_dict[v]['type'].lower() == 'text':
+                        value_lst.append('"' + inst[v]['value'] + '"')
+                    else:
+                        value_lst.append(inst[v]['value'])
+
+                    value_lst.append('"' + inst[v]['display_name'] + '"')
+                s = s[:-2] + ') VALUES ('
+
+                for val in value_lst:
+                    s += val + ', '
+
+                s = s[:-2] + ');\n'
+                # print s
+                db_fd.write(s)
+        print ("Execute below from command line to create instances of {}\n"
+               "\tcat /tmp/{}.sql | while read line; do mysql -uroot "
+               "-pcloud123 dhs_db -e  \"$line\"; done\n"
+               "\t-----------------------------------------------------\n"
+               .format(self._name, self._name))
+
+
 
 
 def generate_pyramid_route():
@@ -190,6 +212,6 @@ if __name__ == "__main__":
                     print(exc)
     generate_pyramid_route()
 
-    # initialize db
+    # Create Tables
     from subprocess import call
     call(["../../venv/bin/initialize_dhs_db", "../../development.ini"])
