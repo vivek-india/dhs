@@ -20,7 +20,7 @@ class ProductParser(object):
         self.validate_instances()
         self.set_id()
         #self.show_instances()
-        self.generate_excel()
+        #self.generate_excel()
         self.generate_pyramid_model()
         self.generate_pyramid_view()
         self.create_instances()
@@ -101,11 +101,24 @@ class {{class_name}}_cls(Base):
     {{p.name}} = Column({{p.type}})
     {% endfor %}
 
+    def to_json(self):
+        {{def_json_str}}
+
 Index('{{class_name}}_index', {{class_name}}_cls.key, unique=True, mysql_length=255)
 		'''
+
+        def_json_str = 'return {'
+        for p in self._properties:
+            def_json_str += '"' + p + '_display_name": self.' + p + '_display_name, '
+
+        def_json_str = def_json_str[:-2] + '}'
+
+
         t = jinja2.Template(s)
-        config = t.render(class_name=self._name, props=props)
-        # print config
+        config = t.render(class_name=self._name, props=props,
+                          def_json_str=def_json_str)
+        #print config
+
         with open('../models/' + self._name + '.py', 'w') as fd:
 		    fd.write(config)
 
@@ -125,10 +138,16 @@ import jsonpickle
 @view_config(route_name='{{class_name}}_view', renderer='json')
 def {{class_name}}_view(request):
 
-    query = request.dbsession.query({{class_name}}.{{class_name}}_cls)
-    print query.all()
+    ret = []
+    err  = None
+    try:
+        query = request.dbsession.query({{class_name}}.{{class_name}}_cls)
+        records = query.all()
+        ret = [rec.to_json() for rec in records]
+    except Exception as err_str:
+        err = str(err_str)
 
-    return {'result': [{'A': 1}, {'B': 2}], 'error': None }
+    return {'result': ret, 'error': err}
         '''
 
         t = jinja2.Template(s)
