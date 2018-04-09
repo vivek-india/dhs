@@ -1,0 +1,22 @@
+---
+name: chaukor_nut
+nick_name: chaukornut
+pack: products
+description: chaukor Nut
+properties:
+    key:
+        description: A combination of characters used to identify each
+                     instance of this product type.
+        type: Text
+        unit:
+            - none
+        position: 0 
+    thickness:
+        type: Float
+        unit:
+            - sut
+            - inches
+        position: 1 
+instances:
+    - {'key': {'value': 'auto', 'display_name': ''},
+       'thickness': {'value': '3', 'unit': 'sut', 'display_name': '3/8 inch'}}

@@ -1,0 +1,42 @@
+---
+name: nut
+nick_name: nut
+pack: products
+description: Nut
+properties:
+    key:
+        description: A combination of characters used to identify each
+                     instance of this product type.
+        type: Text
+        unit:
+            - none
+        position: 0 
+    thickness:
+        type: Float
+        unit:
+            - sut
+            - inches
+        position: 1 
+instances:
+    - {'key': {'value': 'auto', 'display_name': ''},
+       'thickness': {'value': '2', 'unit': 'sut', 'display_name': '1/4 inch'}}
+    - {'key': {'value': 'auto', 'display_name': ''},
+       'thickness': {'value': '2.5', 'unit': 'sut', 'display_name': '5/16 inch'}}
+    - {'key': {'value': 'auto', 'display_name': ''},
+       'thickness': {'value': '3', 'unit': 'sut', 'display_name': '3/8 inch'}}
+    - {'key': {'value': 'auto', 'display_name': ''},
+       'thickness': {'value': '3.5', 'unit': 'sut', 'display_name': '7/16 inch'}}
+    - {'key': {'value': 'auto', 'display_name': ''},
+       'thickness': {'value': '4', 'unit': 'sut', 'display_name': '1/2 inch'}}
+    - {'key': {'value': 'auto', 'display_name': ''},
+       'thickness': {'value': '5', 'unit': 'sut', 'display_name': '5/8 inch'}}
+    - {'key': {'value': 'auto', 'display_name': ''},
+       'thickness': {'value': '6', 'unit': 'sut', 'display_name': '3/4 inch'}}
+    - {'key': {'value': 'auto', 'display_name': ''},
+       'thickness': {'value': '7', 'unit': 'sut', 'display_name': '7/8 inch'}}
+    - {'key': {'value': 'auto', 'display_name': ''},
+       'thickness': {'value': '8', 'unit': 'sut', 'display_name': '1 inch'}}
+    - {'key': {'value': 'auto', 'display_name': ''},
+       'thickness': {'value': '10', 'unit': 'sut', 'display_name': '1 1/4 inch'}}
+    - {'key': {'value': 'auto', 'display_name': ''},
+       'thickness': {'value': '12', 'unit': 'sut', 'display_name': '1 1/2 inch'}}
