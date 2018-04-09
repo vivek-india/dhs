@@ -1,0 +1,72 @@
+---
+name: moti_kantia
+nick_name: motikantia
+pack: products
+description: Moti Kantia
+properties:
+    key:
+        description: A combination of characters used to identify each
+                     instance of this product type.
+        type: Text
+        unit:
+            - none
+        position: 0 
+    company:
+        type: Text
+        position: 1 
+    length:
+        type: Float
+        unit:
+            - sut
+            - inches
+        position: 2 
+instances:
+    - {'key': {'value': 'auto', 'display_name': ''},
+       'company': {'value': 'Local', 'display_name': 'Local'},
+       'length': {'value': '1', 'unit': 'inches', 'display_name': '1 inch'}}
+    - {'key': {'value': 'auto', 'display_name': ''},
+       'company': {'value': 'Local', 'display_name': 'Local'},
+       'length': {'value': '1.5', 'unit': 'inches', 'display_name': '1 1/2 inch'}}
+    - {'key': {'value': 'auto', 'display_name': ''},
+       'company': {'value': 'Local', 'display_name': 'Local'},
+       'length': {'value': '2', 'unit': 'inches', 'display_name': '2 inch'}}
+    - {'key': {'value': 'auto', 'display_name': ''},
+       'company': {'value': 'Local', 'display_name': 'Local'},
+       'length': {'value': '2.5', 'unit': 'inches', 'display_name': '2 1/2 inch'}}
+    - {'key': {'value': 'auto', 'display_name': ''},
+       'company': {'value': 'Local', 'display_name': 'Local'},
+       'length': {'value': '3', 'unit': 'inches', 'display_name': '3 inch'}}
+    - {'key': {'value': 'auto', 'display_name': ''},
+       'company': {'value': 'Local', 'display_name': 'Local'},
+       'length': {'value': '4', 'unit': 'inches', 'display_name': '4 inch'}}
+    - {'key': {'value': 'auto', 'display_name': ''},
+       'company': {'value': 'Local', 'display_name': 'Local'},
+       'length': {'value': '5', 'unit': 'inches', 'display_name': '5 inch'}}
+    - {'key': {'value': 'auto', 'display_name': ''},
+       'company': {'value': 'Local', 'display_name': 'Local'},
+       'length': {'value': '6', 'unit': 'inches', 'display_name': '6 inch'}}
+
+    - {'key': {'value': 'auto', 'display_name': ''},
+       'company': {'value': 'Hari', 'display_name': 'Hari'},
+       'length': {'value': '1', 'unit': 'inches', 'display_name': '1 inch'}}
+    - {'key': {'value': 'auto', 'display_name': ''},
+       'company': {'value': 'Hari', 'display_name': 'Hari'},
+       'length': {'value': '1.5', 'unit': 'inches', 'display_name': '1 1/2 inch'}}
+    - {'key': {'value': 'auto', 'display_name': ''},
+       'company': {'value': 'Hari', 'display_name': 'Hari'},
+       'length': {'value': '2', 'unit': 'inches', 'display_name': '2 inch'}}
+    - {'key': {'value': 'auto', 'display_name': ''},
+       'company': {'value': 'Hari', 'display_name': 'Hari'},
+       'length': {'value': '2.5', 'unit': 'inches', 'display_name': '2 1/2 inch'}}
+    - {'key': {'value': 'auto', 'display_name': ''},
+       'company': {'value': 'Hari', 'display_name': 'Hari'},
+       'length': {'value': '3', 'unit': 'inches', 'display_name': '3 inch'}}
+    - {'key': {'value': 'auto', 'display_name': ''},
+       'company': {'value': 'Hari', 'display_name': 'Hari'},
+       'length': {'value': '4', 'unit': 'inches', 'display_name': '4 inch'}}
+    - {'key': {'value': 'auto', 'display_name': ''},
+       'company': {'value': 'Hari', 'display_name': 'Hari'},
+       'length': {'value': '5', 'unit': 'inches', 'display_name': '5 inch'}}
+    - {'key': {'value': 'auto', 'display_name': ''},
+       'company': {'value': 'Hari', 'display_name': 'Hari'},
+       'length': {'value': '6', 'unit': 'inches', 'display_name': '6 inch'}}
