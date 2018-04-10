@@ -1,0 +1,25 @@
+---
+name: kanti_agra
+nick_name: kantiagra
+pack: products
+description: Agra Kanti
+properties:
+    key:
+        description: A combination of characters used to identify each
+                     instance of this product type.
+        type: Text
+        unit:
+            - none
+        position: 0 
+    length:
+        type: Float
+        unit:
+            - sut
+        position: 1 
+instances:
+    - {'key': {'value': 'auto', 'display_name': ''},
+       'length': {'value': '3', 'unit': 'inches', 'display_name': '3 inch'}}
+    - {'key': {'value': 'auto', 'display_name': ''},
+       'length': {'value': '4', 'unit': 'inches', 'display_name': '4 inch'}}
+    - {'key': {'value': 'auto', 'display_name': ''},
+       'length': {'value': '5', 'unit': 'inches', 'display_name': '5 inch'}}

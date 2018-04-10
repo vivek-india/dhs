@@ -1,0 +1,171 @@
+---
+name: kanti_number
+nick_name: kantinumber
+pack: products
+description: Kanti Number
+properties:
+    key:
+        description: A combination of characters used to identify each
+                     instance of this product type.
+        type: Text
+        unit:
+            - none
+        position: 0 
+    standard:
+        type: Text
+        position: 1 
+    mattha:
+        type: Text
+        unit:
+            - none
+        position: 2 
+    number:
+        type: Float
+        unit:
+            - number
+        position: 3 
+    length:
+        type: Float
+        unit:
+            - sut
+            - inches
+        position: 4
+instances:
+    - {'key': {'value': 'auto', 'display_name': ''},
+       'standard': {'value': 'Special', 'display_name': 'Special'},
+       'mattha': {'value': 'Head', 'display_name': 'Head'},
+       'number': {'value': '14', 'unit': 'inches', 'display_name': '14 Number'},
+       'length': {'value': '1', 'unit': 'inches', 'display_name': '1 inch'}}
+    - {'key': {'value': 'auto', 'display_name': ''},
+       'standard': {'value': 'Special', 'display_name': 'Special'},
+       'mattha': {'value': 'Head', 'display_name': 'Head'},
+       'number': {'value': '14', 'unit': 'inches', 'display_name': '14 Number'},
+       'length': {'value': '1.5', 'unit': 'inches', 'display_name': '1 1/2 inch'}}
+    - {'key': {'value': 'auto', 'display_name': ''},
+       'standard': {'value': 'Special', 'display_name': 'Special'},
+       'mattha': {'value': 'Head', 'display_name': 'Head'},
+       'number': {'value': '14', 'unit': 'inches', 'display_name': '14 Number'},
+       'length': {'value': '2', 'unit': 'inches', 'display_name': '2 inch'}}
+
+    - {'key': {'value': 'auto', 'display_name': ''},
+       'standard': {'value': 'Special', 'display_name': 'Special'},
+       'mattha': {'value': 'Head', 'display_name': 'Head'},
+       'number': {'value': '10', 'unit': 'inches', 'display_name': '10 Number'},
+       'length': {'value': '1.5', 'unit': 'inches', 'display_name': '1 1/2 inch'}}
+
+    - {'key': {'value': 'auto', 'display_name': ''},
+       'standard': {'value': 'Special', 'display_name': 'Special'},
+       'mattha': {'value': 'Head', 'display_name': 'Head'},
+       'number': {'value': '12', 'unit': 'inches', 'display_name': '12 Number'},
+       'length': {'value': '2', 'unit': 'inches', 'display_name': '2 inch'}}
+
+    - {'key': {'value': 'auto', 'display_name': ''},
+       'standard': {'value': 'Special', 'display_name': 'Special'},
+       'mattha': {'value': 'Head', 'display_name': 'Head'},
+       'number': {'value': '12', 'unit': 'inches', 'display_name': '12 Number'},
+       'length': {'value': '2.5', 'unit': 'inches', 'display_name': '2 1/2 inch'}}
+
+
+    - {'key': {'value': 'auto', 'display_name': ''},
+       'standard': {'value': 'Chalu', 'display_name': 'Chalu'},
+       'mattha': {'value': 'Head', 'display_name': 'Head'},
+       'number': {'value': '17', 'unit': 'inches', 'display_name': '17 Number'},
+       'length': {'value': '.5', 'unit': 'inches', 'display_name': '1/2 inch'}}
+    - {'key': {'value': 'auto', 'display_name': ''},
+       'standard': {'value': 'Chalu', 'display_name': 'Chalu'},
+       'mattha': {'value': 'Head', 'display_name': 'Head'},
+       'number': {'value': '17', 'unit': 'inches', 'display_name': '17 Number'},
+       'length': {'value': '.75', 'unit': 'inches', 'display_name': '3/4 inch'}}
+    - {'key': {'value': 'auto', 'display_name': ''},
+       'standard': {'value': 'Chalu', 'display_name': 'Chalu'},
+       'mattha': {'value': 'Head', 'display_name': 'Head'},
+       'number': {'value': '17', 'unit': 'inches', 'display_name': '17 Number'},
+       'length': {'value': '1', 'unit': 'inches', 'display_name': '1 inch'}}
+    - {'key': {'value': 'auto', 'display_name': ''},
+       'standard': {'value': 'Chalu', 'display_name': 'Chalu'},
+       'mattha': {'value': 'Head', 'display_name': 'Head'},
+       'number': {'value': '17', 'unit': 'inches', 'display_name': '17 Number'},
+       'length': {'value': '1.25', 'unit': 'inches', 'display_name': '1 1/4 inch'}}
+    - {'key': {'value': 'auto', 'display_name': ''},
+       'standard': {'value': 'Chalu', 'display_name': 'Chalu'},
+       'mattha': {'value': 'Head', 'display_name': 'Head'},
+       'number': {'value': '17', 'unit': 'inches', 'display_name': '17 Number'},
+       'length': {'value': '1.5', 'unit': 'inches', 'display_name': '1 1/2 inch'}}
+
+    - {'key': {'value': 'auto', 'display_name': ''},
+       'standard': {'value': 'Chalu', 'display_name': 'Chalu'},
+       'mattha': {'value': 'Head', 'display_name': 'Head'},
+       'number': {'value': '20', 'unit': 'inches', 'display_name': '20 Number'},
+       'length': {'value': '.5', 'unit': 'inches', 'display_name': '1/2 inch'}}
+    - {'key': {'value': 'auto', 'display_name': ''},
+       'standard': {'value': 'Chalu', 'display_name': 'Chalu'},
+       'mattha': {'value': 'Head', 'display_name': 'Head'},
+       'number': {'value': '20', 'unit': 'inches', 'display_name': '20 Number'},
+       'length': {'value': '.75', 'unit': 'inches', 'display_name': '3/4 inch'}}
+    - {'key': {'value': 'auto', 'display_name': ''},
+       'standard': {'value': 'Chalu', 'display_name': 'Chalu'},
+       'mattha': {'value': 'Head', 'display_name': 'Head'},
+       'number': {'value': '20', 'unit': 'inches', 'display_name': '20 Number'},
+       'length': {'value': '1', 'unit': 'inches', 'display_name': '1 inch'}}
+    - {'key': {'value': 'auto', 'display_name': ''},
+       'standard': {'value': 'Chalu', 'display_name': 'Chalu'},
+       'mattha': {'value': 'Head', 'display_name': 'Head'},
+       'number': {'value': '20', 'unit': 'inches', 'display_name': '20 Number'},
+       'length': {'value': '1.25', 'unit': 'inches', 'display_name': '1 1/4 inch'}}
+    - {'key': {'value': 'auto', 'display_name': ''},
+       'standard': {'value': 'Chalu', 'display_name': 'Chalu'},
+       'mattha': {'value': 'Head', 'display_name': 'Head'},
+       'number': {'value': '20', 'unit': 'inches', 'display_name': '20 Number'},
+       'length': {'value': '1.5', 'unit': 'inches', 'display_name': '1 1/2 inch'}}
+
+    - {'key': {'value': 'auto', 'display_name': ''},
+       'standard': {'value': 'Special', 'display_name': 'Special'},
+       'mattha': {'value': 'Head', 'display_name': 'Head'},
+       'number': {'value': '17', 'unit': 'inches', 'display_name': '17 Number'},
+       'length': {'value': '.5', 'unit': 'inches', 'display_name': '1/2 inch'}}
+    - {'key': {'value': 'auto', 'display_name': ''},
+       'standard': {'value': 'Special', 'display_name': 'Special'},
+       'mattha': {'value': 'Head', 'display_name': 'Head'},
+       'number': {'value': '17', 'unit': 'inches', 'display_name': '17 Number'},
+       'length': {'value': '.75', 'unit': 'inches', 'display_name': '3/4 inch'}}
+    - {'key': {'value': 'auto', 'display_name': ''},
+       'standard': {'value': 'Special', 'display_name': 'Special'},
+       'mattha': {'value': 'Head', 'display_name': 'Head'},
+       'number': {'value': '17', 'unit': 'inches', 'display_name': '17 Number'},
+       'length': {'value': '1', 'unit': 'inches', 'display_name': '1 inch'}}
+    - {'key': {'value': 'auto', 'display_name': ''},
+       'standard': {'value': 'Special', 'display_name': 'Special'},
+       'mattha': {'value': 'Head', 'display_name': 'Head'},
+       'number': {'value': '17', 'unit': 'inches', 'display_name': '17 Number'},
+       'length': {'value': '1.25', 'unit': 'inches', 'display_name': '1 1/4 inch'}}
+    - {'key': {'value': 'auto', 'display_name': ''},
+       'standard': {'value': 'Special', 'display_name': 'Special'},
+       'mattha': {'value': 'Head', 'display_name': 'Head'},
+       'number': {'value': '17', 'unit': 'inches', 'display_name': '17 Number'},
+       'length': {'value': '1.5', 'unit': 'inches', 'display_name': '1 1/2 inch'}}
+
+    - {'key': {'value': 'auto', 'display_name': ''},
+       'standard': {'value': 'Special', 'display_name': 'Special'},
+       'mattha': {'value': 'Head', 'display_name': 'Head'},
+       'number': {'value': '20', 'unit': 'inches', 'display_name': '20 Number'},
+       'length': {'value': '.5', 'unit': 'inches', 'display_name': '1/2 inch'}}
+    - {'key': {'value': 'auto', 'display_name': ''},
+       'standard': {'value': 'Special', 'display_name': 'Special'},
+       'mattha': {'value': 'Head', 'display_name': 'Head'},
+       'number': {'value': '20', 'unit': 'inches', 'display_name': '20 Number'},
+       'length': {'value': '.75', 'unit': 'inches', 'display_name': '3/4 inch'}}
+    - {'key': {'value': 'auto', 'display_name': ''},
+       'standard': {'value': 'Special', 'display_name': 'Special'},
+       'mattha': {'value': 'Head', 'display_name': 'Head'},
+       'number': {'value': '20', 'unit': 'inches', 'display_name': '20 Number'},
+       'length': {'value': '1', 'unit': 'inches', 'display_name': '1 inch'}}
+    - {'key': {'value': 'auto', 'display_name': ''},
+       'standard': {'value': 'Special', 'display_name': 'Special'},
+       'mattha': {'value': 'Head', 'display_name': 'Head'},
+       'number': {'value': '20', 'unit': 'inches', 'display_name': '20 Number'},
+       'length': {'value': '1.25', 'unit': 'inches', 'display_name': '1 1/4 inch'}}
+    - {'key': {'value': 'auto', 'display_name': ''},
+       'standard': {'value': 'Special', 'display_name': 'Special'},
+       'mattha': {'value': 'Head', 'display_name': 'Head'},
+       'number': {'value': '20', 'unit': 'inches', 'display_name': '20 Number'},
+       'length': {'value': '1.5', 'unit': 'inches', 'display_name': '1 1/2 inch'}}

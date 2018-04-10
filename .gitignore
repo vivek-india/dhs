@@ -72,3 +72,5 @@ routes.py
 
 
 
+dhs/dhs/models/*.py
+dhs/dhs/views/*.py
