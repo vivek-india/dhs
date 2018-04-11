@@ -212,8 +212,32 @@ def generate_pyramid_route():
 
     with open('../routes.py', 'w') as rt_fd:
         rt_fd.write(config)
-    
+
+
+def update_gitignore(files_gitignore):
+    tobe_ignored = []
+
+    with open('../../../.gitignore') as gi_fd:
+        lines = gi_fd.readlines()
+
+        for x in files_gitignore:
+
+            tobe_ignored_file = x
+            for line in lines:
+                if x in line:
+                    tobe_ignored_file = None
+                    break
+            if tobe_ignored_file:
+                tobe_ignored.append(tobe_ignored_file)
+
+    with open('../../../.gitignore', 'a') as gi_fd:
+        for f in tobe_ignored:
+            gi_fd.write('dhs/dhs/models/' + f + '.py\n')
+            gi_fd.write('dhs/dhs/views/' + f + '.py\n')
+
+
 if __name__ == "__main__":
+    files_gitignore = []
     # Generate import list
     with open('../models/lst_products.py', 'w') as lst_fd:
         for filename in glob.glob('products/*.yaml'):
@@ -225,8 +249,9 @@ if __name__ == "__main__":
                     # print json_string
                     pp = ProductParser(d)
 
-                    pp.parse_instances()
-                    lst_fd.write('from ..models.' + pp._name + ' import ' + pp._name + '_cls\n')
+                    #pp.parse_instances()
+                    #lst_fd.write('from ..models.' + pp._name + ' import ' + pp._name + '_cls\n')
+                    files_gitignore.append(pp._name)
                 except yaml.YAMLError as exc:
                     print(exc)
     generate_pyramid_route()
@@ -234,3 +259,5 @@ if __name__ == "__main__":
     # Create Tables
     from subprocess import call
     call(["../../venv/bin/initialize_dhs_db", "../../development.ini"])
+
+    update_gitignore(files_gitignore)
