@@ -1,0 +1,21 @@
+---
+name: kabja_bolt
+nick_name: kabjabolt
+pack: products
+description: Kabja bolt
+properties:
+    key:
+        description: A combination of characters used to identify each
+                     instance of this product type.
+        type: Text
+        position: 0 
+    length:
+        type: Float
+        position: 1 
+instances:
+    - {'key': {'value': 'auto', 'display_name': ''},
+       'length': {'value': '3', 'unit': 'inches', 'display_name': '3 inch'}}
+    - {'key': {'value': 'auto', 'display_name': ''},
+       'length': {'value': '4', 'unit': 'inches', 'display_name': '4 inch'}}
+    - {'key': {'value': 'auto', 'display_name': ''},
+       'length': {'value': '5', 'unit': 'inches', 'display_name': '5 inch'}}

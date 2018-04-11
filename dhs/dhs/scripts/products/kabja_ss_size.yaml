@@ -1,0 +1,30 @@
+---
+name: kabja_ss_size
+nick_name: kabjasssize
+pack: products
+description: Kabja steel
+properties:
+    key:
+        description: A combination of characters used to identify each
+                     instance of this product type.
+        type: Text
+        position: 0 
+    kabja_type:
+        type: Text
+        position: 1
+instances:
+
+    - {'key': {'value': 'auto', 'display_name': ''},
+       'kabja_type': {'value': '3x16', 'display_name': '3x16'}}
+
+    - {'key': {'value': 'auto', 'display_name': ''},
+       'kabja_type': {'value': '4x16', 'display_name': '4x16'}}
+
+    - {'key': {'value': 'auto', 'display_name': ''},
+       'kabja_type': {'value': '4x14', 'display_name': '4x14'}}
+
+    - {'key': {'value': 'auto', 'display_name': ''},
+       'kabja_type': {'value': '5 inch', 'display_name': '5 inch'}}
+
+    - {'key': {'value': 'auto', 'display_name': ''},
+       'kabja_type': {'value': '6 inch', 'display_name': '6 inch'}}

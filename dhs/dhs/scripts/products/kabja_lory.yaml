@@ -1,0 +1,19 @@
+---
+name: kabja_lory
+nick_name: kabjalory
+pack: products
+description: Kabja lory
+properties:
+    key:
+        description: A combination of characters used to identify each
+                     instance of this product type.
+        type: Text
+        position: 0 
+    kabja_type:
+        type: Text
+        position: 1 
+instances:
+    - {'key': {'value': 'auto', 'display_name': ''},
+       'kabja_type': {'value': 'Light', 'display_name': 'Light'}}
+    - {'key': {'value': 'auto', 'display_name': ''},
+       'kabja_type': {'value': 'Heavy', 'display_name': 'Heavy'}}

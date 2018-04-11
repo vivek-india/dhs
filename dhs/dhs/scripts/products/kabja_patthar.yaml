@@ -1,0 +1,25 @@
+---
+name: kabja_patthar
+nick_name: kabjapatthar
+pack: products
+description: Kabja patthar
+properties:
+    key:
+        description: A combination of characters used to identify each
+                     instance of this product type.
+        type: Text
+        position: 0 
+    kabja_type:
+        type: Text
+        position: 1 
+instances:
+    - {'key': {'value': 'auto', 'display_name': ''},
+       'kabja_type': {'value': 'Patthar Patthar', 'display_name': 'Patthar Patthar'}}
+    - {'key': {'value': 'auto', 'display_name': ''},
+       'kabja_type': {'value': 'Hole Heavy', 'display_name': 'Hole Heavy'}}
+    - {'key': {'value': 'auto', 'display_name': ''},
+       'kabja_type': {'value': 'Hole Cut Size', 'display_name': 'Hole Cut Size'}}
+    - {'key': {'value': 'auto', 'display_name': ''},
+       'kabja_type': {'value': 'Without Hole Halka', 'display_name': 'Without Hole Halka'}}
+    - {'key': {'value': 'auto', 'display_name': ''},
+       'kabja_type': {'value': 'Without Hole Heavy', 'display_name': 'Without Hole Heavy'}}

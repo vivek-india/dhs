@@ -1,0 +1,73 @@
+---
+name: kabja_six_feet
+nick_name: kabjasixfeet
+pack: products
+description: Kabja six feet
+properties:
+    key:
+        description: A combination of characters used to identify each
+                     instance of this product type.
+        type: Text
+        position: 0 
+    kabja_type:
+        type: Text
+        position: 1
+    side1:
+        type: Float
+        position: 2
+    side2:
+        type: Float
+        position: 3
+instances:
+    - {'key': {'value': 'auto', 'display_name': ''},
+       'kabja_type': {'value': 'Halka', 'display_name': 'Halka'},
+       'side1': {'value': '.5', 'unit': 'inches', 'display_name': '1/2 inch'},
+       'side2': {'value': '.5', 'unit': 'inches', 'display_name': '1/2 inch'}}
+    - {'key': {'value': 'auto', 'display_name': ''},
+       'kabja_type': {'value': 'Heavy', 'display_name': 'Heavy'},
+       'side1': {'value': '.5', 'unit': 'inches', 'display_name': '1/2 inch'},
+       'side2': {'value': '.5', 'unit': 'inches', 'display_name': '1/2 inch'}}
+
+    - {'key': {'value': 'auto', 'display_name': ''},
+       'kabja_type': {'value': 'Halka', 'display_name': 'Halka'},
+       'side1': {'value': '.5', 'unit': 'inches', 'display_name': '1/2 inch'},
+       'side2': {'value': '.75', 'unit': 'inches', 'display_name': '3/4 inch'}}
+    - {'key': {'value': 'auto', 'display_name': ''},
+       'kabja_type': {'value': 'Heavy', 'display_name': 'Heavy'},
+       'side1': {'value': '.5', 'unit': 'inches', 'display_name': '1/2 inch'},
+       'side2': {'value': '.75', 'unit': 'inches', 'display_name': '3/4 inch'}}
+
+    - {'key': {'value': 'auto', 'display_name': ''},
+       'kabja_type': {'value': 'Halka', 'display_name': 'Halka'},
+       'side1': {'value': '.75', 'unit': 'inches', 'display_name': '3/4 inch'},
+       'side2': {'value': '.75', 'unit': 'inches', 'display_name': '3/4 inch'}}
+
+    - {'key': {'value': 'auto', 'display_name': ''},
+       'kabja_type': {'value': 'Medium', 'display_name': 'Medium'},
+       'side1': {'value': '.75', 'unit': 'inches', 'display_name': '3/4 inch'},
+       'side2': {'value': '.75', 'unit': 'inches', 'display_name': '3/4 inch'}}
+
+    - {'key': {'value': 'auto', 'display_name': ''},
+       'kabja_type': {'value': 'Heavy', 'display_name': 'Heavy'},
+       'side1': {'value': '.75', 'unit': 'inches', 'display_name': '3/4 inch'},
+       'side2': {'value': '.75', 'unit': 'inches', 'display_name': '3/4 inch'}}
+
+    - {'key': {'value': 'auto', 'display_name': ''},
+       'kabja_type': {'value': 'cp', 'display_name': 'cp'},
+       'side1': {'value': '.75', 'unit': 'inches', 'display_name': '3/4 inch'},
+       'side2': {'value': '.75', 'unit': 'inches', 'display_name': '3/4 inch'}}
+
+    - {'key': {'value': 'auto', 'display_name': ''},
+       'kabja_type': {'value': 'SS Halka', 'display_name': 'SS Halka'},
+       'side1': {'value': '.75', 'unit': 'inches', 'display_name': '3/4 inch'},
+       'side2': {'value': '.75', 'unit': 'inches', 'display_name': '3/4 inch'}}
+
+    - {'key': {'value': 'auto', 'display_name': ''},
+       'kabja_type': {'value': 'SS Heavy', 'display_name': 'SS Heavy'},
+       'side1': {'value': '.75', 'unit': 'inches', 'display_name': '3/4 inch'},
+       'side2': {'value': '.75', 'unit': 'inches', 'display_name': '3/4 inch'}}
+
+    - {'key': {'value': 'auto', 'display_name': ''},
+       'kabja_type': {'value': '', 'display_name': ''},
+       'side1': {'value': '1', 'unit': 'inches', 'display_name': '1 inch'},
+       'side2': {'value': '1', 'unit': 'inches', 'display_name': '1 inch'}}
