@@ -1,12 +1,17 @@
+<link rel="stylesheet" href="static/dhs.products.css">
 <script src='static/js/dhs.products.js'></script>
 
-<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names..">
 
-<table id="myTable">
-  <tr class="header">
-    <th style="width:60%;">Product</th>
-  </tr>
-  {% for item in result %}
-    <tr> <td>{{item}}</td> </tr>
-  {% endfor %}
-</table>
+
+<div class="col-sm-12">
+    <input type="text" id="myInput" onkeyup="product_search()" placeholder="Search for names..">
+
+    <table id="myTable">
+      <tr class="header">
+        <th style="width:60%;">Product</th>
+      </tr>
+      {% for item in result %}
+        <tr> <td>{{item}}</td> </tr>
+      {% endfor %}
+    </table>
+</div>
