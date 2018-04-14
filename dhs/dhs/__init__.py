@@ -7,6 +7,7 @@ def main(global_config, **settings):
 
     config = Configurator(settings=settings)
     config.include('pyramid_jinja2')
+    config.add_jinja2_renderer('.html')
     config.include('.models')
     config.include('.routes')
     config.scan()

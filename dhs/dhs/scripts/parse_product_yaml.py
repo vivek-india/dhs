@@ -214,13 +214,13 @@ def generate_pyramid_route():
         rt_fd.write(config)
 
 
-def update_gitignore(files_gitignore):
+def update_gitignore(list_of_all_products):
     tobe_ignored = []
 
     with open('../../../.gitignore') as gi_fd:
         lines = gi_fd.readlines()
 
-        for x in files_gitignore:
+        for x in list_of_all_products:
 
             tobe_ignored_file = x
             for line in lines:
@@ -235,9 +235,19 @@ def update_gitignore(files_gitignore):
             gi_fd.write('dhs/dhs/models/' + f + '.py\n')
             gi_fd.write('dhs/dhs/views/' + f + '.py\n')
 
+def update_product_table(list_of_all_products):
+    with open('/tmp/products.sql', 'w') as pd_fd:
+        for x in list_of_all_products:
+            s = 'INSERT INTO products (`product_table`) VALUES ("' + x + '");\n'
+            pd_fd.write(s)
+
+    print ("Execute below from command line to update products in table\n"
+           "\tcat /tmp/products.sql | while read line; do mysql -uroot "
+           "-pcloud123 dhs_db -e  \"$line\"; done\n\n")
+
 
 if __name__ == "__main__":
-    files_gitignore = []
+    list_of_all_products = []
     # Generate import list
     with open('../models/lst_products.py', 'w') as lst_fd:
         for filename in glob.glob('products/*.yaml'):
@@ -249,9 +259,9 @@ if __name__ == "__main__":
                     # print json_string
                     pp = ProductParser(d)
 
-                    #pp.parse_instances()
-                    #lst_fd.write('from ..models.' + pp._name + ' import ' + pp._name + '_cls\n')
-                    files_gitignore.append(pp._name)
+                    pp.parse_instances()
+                    lst_fd.write('from ..models.' + pp._name + ' import ' + pp._name + '_cls\n')
+                    list_of_all_products.append(pp._name)
                 except yaml.YAMLError as exc:
                     print(exc)
     generate_pyramid_route()
@@ -260,4 +270,6 @@ if __name__ == "__main__":
     from subprocess import call
     call(["../../venv/bin/initialize_dhs_db", "../../development.ini"])
 
-    update_gitignore(files_gitignore)
+    update_gitignore(list_of_all_products)
+
+    update_product_table(list_of_all_products)

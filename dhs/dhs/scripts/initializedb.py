@@ -16,7 +16,7 @@ from ..models import (
     get_tm_session,
     )
 from ..models import MyModel
-from ..models import Product
+from ..models import Products
 from ..models import lst_products
 
 

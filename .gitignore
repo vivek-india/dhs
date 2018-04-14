@@ -124,3 +124,5 @@ dhs/dhs/models/kanti_button.py
 dhs/dhs/views/kanti_button.py
 dhs/dhs/models/cheera_bolt.py
 dhs/dhs/views/cheera_bolt.py
+dhs/dhs/models/kabja_premium.py
+dhs/dhs/views/kabja_premium.py
