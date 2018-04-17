@@ -16,16 +16,6 @@ def my_view(request):
     return {'one': one, 'project': 'dhs'}
 
 
-
-@view_config(route_name='first_msg', renderer='../templates/msg1.jinja2')
-def first_msg(request):
-    return {'a': 10, 'b': 20}
-
-@view_config(route_name='second_msg', renderer='../templates/msg2.jinja2')
-def second_msg(request):
-    return {'c': 300, 'd': 400}
-
-
 db_err_msg = """\
 Pyramid is having a problem using your SQL database.  The problem
 might be caused by one of the following things:

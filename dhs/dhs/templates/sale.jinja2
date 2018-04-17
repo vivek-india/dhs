@@ -1,0 +1,22 @@
+<link rel="stylesheet" href="static/dhs.sale.css">
+<script src='static/js/dhs.sale.js'></script>
+
+
+
+<div class="col-sm-6">
+    <input type="text" id="myInput" onkeyup="product_search()" placeholder="name...">
+
+    <table id="myTable" border="1">
+      <tr class="header">
+        <th style="aligh:left;">Quantity</th>
+        <th style="aligh:left;">Description</th>
+        <th style="aligh:left;">Price</th>
+      </tr>
+      {% for item in result %}
+        <tr>
+            <td align="left"> <input type="text" size="2" ></td>
+            <td align="left"> {{item}}</td>
+            <td align="left">Price</td> </tr>
+      {% endfor %}
+    </table>
+</div>

@@ -32,8 +32,8 @@ from ..models.cheera_bolt import cheera_bolt_cls
 
 
 # @view_config(route_name='products', renderer='json')
-@view_config(route_name='products', renderer='../templates/products.jinja2')
-def products(request):
+@view_config(route_name='sale', renderer='../templates/sale.jinja2')
+def sale(request):
 
     product_list = []
     err_msg = None

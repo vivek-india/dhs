@@ -31,9 +31,8 @@ from ..models.kanti_button import kanti_button_cls
 from ..models.cheera_bolt import cheera_bolt_cls
 
 
-# @view_config(route_name='products', renderer='json')
-@view_config(route_name='products', renderer='../templates/products.jinja2')
-def products(request):
+@view_config(route_name='purchase', renderer='../templates/purchase.jinja2')
+def purchase(request):
 
     product_list = []
     err_msg = None
