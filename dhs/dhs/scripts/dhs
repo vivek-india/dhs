@@ -15,9 +15,9 @@ def process_args():
 
     if sys.argv[1] == "product" and sys.argv[2] == "create":
         if len(sys.argv) == 4:
-            product.handle_create_specific_product(sys.argv[3])
+            product.handle_create(sys.argv[3])
         else:
-            product.handle_create_all()
+            product.handle_create('')
 
 
 
