@@ -28,12 +28,19 @@
     <div class="col-sm-7">
         <input type="text" class="searchInput" onkeyup="product_search()" placeholder="name...">
 
-        <table id="soldTable" class="saleTableStyle" border="1"  style="background-color:lightblue">
+        <table id="soldTable" class="saleTableStyle" border="1">
           <tr class="header">
             <th style="aligh:left;">Quantity</th>
             <th style="aligh:left;">Description</th>
             <th style="aligh:left;">Unit Price</th>
             <th style="aligh:left;">Total</th>
+          </tr>
+
+          <tr class="total_tr">
+            <td style="aligh:left;"></td>
+            <td style="aligh:left;"></td>
+            <td style="aligh:left;">Total</td>
+            <td class="total_td" style="aligh:left;">0</td>
           </tr>
         </table>
     </div>

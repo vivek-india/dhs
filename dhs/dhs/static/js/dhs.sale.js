@@ -22,19 +22,47 @@ function isInt(value) {
          !isNaN(parseInt(value, 10));
 }
 
-//function setSolditem(sale_quantity, item_code, price, data) {
-function setSolditem(tdElem) {
+function handleSoldItemEvent(item_code) {
+    console.log(item_code);
+}
 
+function setSolditem(sale_val, item_code, price, data) {
 
-    //s = '<tr id="sold_' + item_code +'">';
-    //s += '<td class="sold_data_' + item_code + '" data-info="' + data + '" align="left">';
-    //s += '<input class="sold_quantity_input_' + item_code + '" type="text" size="7" onfocusout="soldItemSelected("' + item_code + '")"> </td>';
-    //s += '<td align="left"> ' + item_code + '</td>';
-    //s += '<td class="sold_price_' + item_code + '" align="left">' + price + '</td> </tr>';
     var soldTable = document.getElementById("soldTable");
-    var cln = tdElem.cloneNode(true);
 
-    soldTable.append(cln);
+    var tr = document.createElement("TR");
+
+    var td1 = document.createElement("TD");
+    td1.id = 'sold_data_' + item_code
+    td1.setAttribute('data-info', data);
+
+    var sold_input = document.createElement("INPUT");
+    sold_input.setAttribute("type", "text");
+    sold_input.className = 'sold_quantity_input_' + item_code;
+    sold_input.size = 7;
+    sold_input.onfocusout = handleSoldItemEvent;
+    sold_input.value = sale_val;
+    td1.append(sold_input);
+    tr.append(td1);
+
+    var td2 = document.createElement("TD");
+    td2.textContent = item_code;
+    tr.append(td2);
+
+    var td3 = document.createElement("TD");
+    td3.textContent = price;
+    tr.append(td3);
+
+    var td4 = document.createElement("TD");
+    td4.textContent = parseInt(price) * parseInt(sale_val[0]);
+    tr.append(td4);
+
+    var last_tr = soldTable.getElementsByClassName('total_tr')["0"];
+    var last_td = last_tr.getElementsByClassName('total_td')["0"];
+    last_td.textContent = parseInt(last_td.textContent) + parseInt(td4.textContent);
+
+    last_tr.before(tr);
+
 }
 
 function saleItemSelected(item_code) {
@@ -42,6 +70,12 @@ function saleItemSelected(item_code) {
 
     var saleInputElem = tdElem.getElementsByClassName("quantity_input_" + item_code)["0"]
     var sale_val = saleInputElem.value
+
+    if (sale_val == '') {
+        saleInputElem.style.backgroundColor = "white";
+        return true;
+    }
+
     sale_val = sale_val.replace(/\s+/g, " ");
     sale_val = sale_val.split(" ");
 
@@ -86,9 +120,10 @@ function saleItemSelected(item_code) {
         return false;
     }
 
+    setSolditem(sale_val, item_code, price, info_val);
+
     saleInputElem.style.backgroundColor = "white";
-    //setSolditem(sale_quantity, item_code, price, info_val);
-    setSolditem(tdElem);
+    saleInputElem.value = '';
     return true;
     //console.log(sale_val)
     //console.log(price)
