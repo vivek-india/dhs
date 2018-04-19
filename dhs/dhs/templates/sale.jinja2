@@ -3,20 +3,38 @@
 
 
 
-<div class="col-sm-6">
-    <input type="text" id="myInput" onkeyup="product_search()" placeholder="name...">
+<div>
+    <div class="col-sm-5">
+        <input type="text" id="saleInput" class="searchInput" onkeyup="product_search()" placeholder="name...">
 
-    <table id="myTable" border="1">
-      <tr class="header">
-        <th style="aligh:left;">Quantity</th>
-        <th style="aligh:left;">Description</th>
-        <th style="aligh:left;">Price</th>
-      </tr>
-      {% for item in result %}
-        <tr>
-            <td align="left"> <input type="text" size="2" ></td>
-            <td align="left"> {{item}}</td>
-            <td align="left">Price</td> </tr>
-      {% endfor %}
-    </table>
+        <table id="saleTable" class="saleTableStyle" border="1">
+          <tr class="header">
+            <th style="aligh:left;">Quantity</th>
+            <th style="aligh:left;">Description</th>
+            <th style="aligh:left;">Price</th>
+          </tr>
+          {% for item in result %}
+            <tr id="{{item.item_code}}">
+                <td class="data_{{item.item_code}}" data-info="{{item.data}}" align="left">
+                    <input class="quantity_input_{{item.item_code}}" type="text" size="7" onfocusout="saleItemSelected('{{item.item_code}}')">
+                </td>
+                <td align="left"> {{item.item_code}}</td>
+                <td class="price_{{item.item_code}}" align="left">{{item.price}}</td>
+            </tr>
+          {% endfor %}
+        </table>
+    </div>
+
+    <div class="col-sm-7">
+        <input type="text" class="searchInput" onkeyup="product_search()" placeholder="name...">
+
+        <table id="soldTable" class="saleTableStyle" border="1"  style="background-color:lightblue">
+          <tr class="header">
+            <th style="aligh:left;">Quantity</th>
+            <th style="aligh:left;">Description</th>
+            <th style="aligh:left;">Unit Price</th>
+            <th style="aligh:left;">Total</th>
+          </tr>
+        </table>
+    </div>
 </div>

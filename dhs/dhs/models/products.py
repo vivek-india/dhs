@@ -16,7 +16,6 @@ class Products(Base):
     item_code = Column(Text)
     weighing_units = Column(Text)
     weight_relationship = Column(Text)
-    weight_relationship = Column(Text)
     quantity = Column(Text)
     cost = Column(Text)
     price = Column(Text)

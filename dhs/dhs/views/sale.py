@@ -15,7 +15,14 @@ def sale(request):
     try:
         query = request.dbsession.query(Products)
         for x in query.all():
-            product_list.append(x.item_code)
+            d = {'item_code': x.item_code,
+                 'price': x.price,
+                 'data': {"wu": x.weighing_units,
+                          "wr": x.weight_relationship,
+                          "quantity": x.quantity}
+                }
+
+            product_list.append(d)
 
     except Exception as err:
         err_msg = str(err)

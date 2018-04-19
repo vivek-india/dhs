@@ -2,7 +2,7 @@
   box-sizing: border-box;
 }
 
-#myInput {
+.searchInput {
   background-position: 10px 10px;
   background-repeat: no-repeat;
   width: 100%;
@@ -12,22 +12,23 @@
   margin-bottom: 12px;
 }
 
-#myTable {
+
+.saleTableStyle {
   border-collapse: collapse;
   width: 100%;
   border: 1px solid #ddd;
   font-size: 16px;
 }
 
-#myTable th, #myTable td {
+.saleTableStyle th, .saleTableStyle td {
   text-align: left;
   padding: 10px;
 }
 
-#myTable tr {
+.saleTableStyle tr {
   border-bottom: 1px solid #ddd;
 }
 
-#myTable tr.header, #myTable tr:hover {
+.saleTableStyle tr.header, .saleTableStyle tr:hover {
   background-color: #f1f1f1;
 }
