@@ -7,22 +7,24 @@
     <div class="col-sm-4" style="border-right: 3px solid black;">
         <input type="text" id="saleInput" class="searchInput" onkeyup="product_search()" placeholder="name...">
 
-        <table id="saleTable" class="saleTableStyle" border="1">
-          <tr class="header">
-            <th style="aligh:left;">Quantity</th>
-            <th style="aligh:left;">Description</th>
-            <th style="aligh:left;">Price</th>
-          </tr>
-          {% for item in result %}
-            <tr id="{{item.item_code}}">
-                <td class="data_{{item.item_code}}" data-info="{{item.data}}" align="left">
-                    <input class="quantity_input_{{item.item_code}}" type="text" size="7" onfocusout="saleItemSelected('{{item.item_code}}')">
-                </td>
-                <td align="left"> {{item.item_code}}</td>
-                <td class="price_{{item.item_code}}" align="left">{{item.price}}</td>
-            </tr>
-          {% endfor %}
-        </table>
+        <div id="saleTableDiv" style="overflow-y:scroll;height:550px;">
+            <table id="saleTable" class="saleTableStyle" border="1">
+              <tr class="header">
+                <th style="aligh:left;">Quantity</th>
+                <th style="aligh:left;">Description</th>
+                <th style="aligh:left;">Price</th>
+              </tr>
+              {% for item in result %}
+                <tr id="{{item.item_code}}">
+                    <td class="data_{{item.item_code}}" data-info="{{item.data}}" align="left">
+                        <input class="quantity_input_{{item.item_code}}" type="text" size="7" onfocusout="saleItemSelected('{{item.item_code}}')">
+                    </td>
+                    <td align="left"> {{item.item_code}}</td>
+                    <td class="price_{{item.item_code}}" align="left">{{item.price}}</td>
+                </tr>
+              {% endfor %}
+            </table>
+        </div>
     </div>
 
     <div class="col-sm-8">
@@ -53,20 +55,22 @@
 
         <input type="text" class="searchInput" onkeyup="product_search()" placeholder="name...">
 
-        <table id="soldTable" class="boxshadow saleTableStyle" border="1">
-          <tr class="header">
-            <th style="aligh:left;">Quantity</th>
-            <th style="aligh:left;">Description</th>
-            <th style="aligh:left;">Unit Price</th>
-            <th style="aligh:left;">Total</th>
-          </tr>
+        <div id="soldTableDiv" style="overflow-y:scroll;height:450px;">
+            <table id="soldTable" class="boxshadow saleTableStyle" border="1">
+              <tr class="header">
+                <th style="aligh:left;">Quantity</th>
+                <th style="aligh:left;">Description</th>
+                <th style="aligh:left;">Unit Price</th>
+                <th style="aligh:left;">Total</th>
+              </tr>
 
-          <tr class="total_tr">
-            <td style="aligh:left;"></td>
-            <td style="aligh:left;"></td>
-            <td style="aligh:left;">Total</td>
-            <td class="total_td" style="aligh:left;">0</td>
-          </tr>
-        </table>
+              <tr class="total_tr">
+                <td style="aligh:left;"></td>
+                <td style="aligh:left;"></td>
+                <td style="aligh:left;">Total</td>
+                <td class="total_td" style="aligh:left;">0</td>
+              </tr>
+            </table>
+        </div>
     </div>
 </div>

@@ -235,6 +235,11 @@ function saleItemSelected(item_code) {
 
     saleInputElem.style.backgroundColor = "white";
     saleInputElem.value = '';
+
+
+    var objDiv = document.getElementById("soldTableDiv");
+    objDiv.scrollTop = objDiv.scrollHeight;
+
     return true;
     //console.log(sale_val)
     //console.log(price)
