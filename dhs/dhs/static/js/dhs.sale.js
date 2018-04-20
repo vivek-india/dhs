@@ -60,7 +60,8 @@ function setSolditem(sale_val, item_code, price, data) {
     sold_input.className = 'sold_quantity_input_' + item_code;
     sold_input.size = 7;
     sold_input.onfocusout = handleSoldItemEvent;
-    sold_input.value = sale_val;
+    sold_input.value = sale_val.join("  ");
+    sold_input.style.textAlign = "right";
     td1.append(sold_input);
     tr.append(td1);
 
@@ -125,7 +126,7 @@ function saleItemSelected(item_code) {
 
                 // Validate sale_val unit
                 for (var i = 0; i < valid_units.length; i++) {
-                    if (valid_units[i].trim().toUpperCase()[0] == sale_val[1].toUpperCase()[0]) {
+                    if (valid_units[i].trim().toUpperCase() == sale_val[1].toUpperCase()) {
                         valid_input = true;
                         break;
                     }
