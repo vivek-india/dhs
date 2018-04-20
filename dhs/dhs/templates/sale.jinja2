@@ -4,7 +4,7 @@
 
 
 <div>
-    <div class="col-sm-5">
+    <div class="col-sm-4" style="border-right: 3px solid black;">
         <input type="text" id="saleInput" class="searchInput" onkeyup="product_search()" placeholder="name...">
 
         <table id="saleTable" class="saleTableStyle" border="1">
@@ -25,10 +25,35 @@
         </table>
     </div>
 
-    <div class="col-sm-7" id="boxshadow">
+    <div class="col-sm-8">
+
+        <table id="soldTableHeader" class="soldTableHeaderStyle">
+          <tr>
+            <td style="aligh:left;">Name</td>
+            <td style="aligh:left;border-right: 1px solid black;" >
+                <input type="text">
+            </td>
+            <td style="aligh:right;border-left: 1px solid black;">Order-Id</td>
+            <td style="aligh:left;" >
+                <input type="text">
+            </td>
+          </tr>
+
+          <tr>
+            <td style="aligh:left;">Transport</td>
+            <td style="aligh:left;border-right: 1px solid black;" >
+                <input type="text">
+            </td>
+            <td style="aligh:right;border-left: 1px solid black;">Date</td>
+            <td id="datetime" style="aligh:left;">
+            </td>
+
+          </tr>
+        </table>
+
         <input type="text" class="searchInput" onkeyup="product_search()" placeholder="name...">
 
-        <table id="soldTable" class="saleTableStyle" border="1">
+        <table id="soldTable" class="boxshadow saleTableStyle" border="1">
           <tr class="header">
             <th style="aligh:left;">Quantity</th>
             <th style="aligh:left;">Description</th>

@@ -16,6 +16,25 @@ function product_search() {
   }
 }
 
+/*
+  #No parameters
+  returns a date with this format DD-MM-YYYY
+*/
+function now()
+{
+  var d = new Date();
+  var month = d.getMonth()+1;
+  var day = d.getDate();
+
+  var output = (day<10 ? '0' : '') + day + "/"
+              + (month<10 ? '0' : '') + month + '/'
+              + d.getFullYear();
+
+  return output;
+}
+
+document.getElementById('datetime').innerHTML = now();
+
 function isInt(value) {
   return !isNaN(value) &&
          parseInt(Number(value)) == value &&
@@ -96,9 +115,11 @@ function saleItemSelected(item_code) {
         if (isInt(sale_val[0])) {
 
             var sale_quantity = parseInt(sale_val[0], 10);
+            if (sale_quantity <= 0) {
+                ret = saleInputElem.value;
 
-            // Validate sale_val quantity is a number and less than in stock.
-            if (sale_quantity > stock_quantity) {
+            } else if (sale_quantity > stock_quantity) {
+                // Validate sale_val quantity not less than in stock.
                 ret = 'MAX: ' + info_dict['quantity'];
             }else {
 
