@@ -37,38 +37,72 @@ document.getElementById('datetime').innerHTML = now();
 
 function isInt(value) {
   return !isNaN(value) &&
-         parseInt(Number(value)) == value &&
-         !isNaN(parseInt(value, 10));
+         parseFloat(Number(value)) == value &&
+         !isNaN(parseFloat(value, 10));
 }
 
-function handleSoldItemEvent(item_code) {
-    console.log(item_code);
-}
 
-function handleSoldItemPriceChangeEvent(sold_row, item_code, finalTotalElem) {
+function handleSoldItemChangeEvent(sold_row, item_code, finalTotalElem) {
 
-    var info_val = sold_row.getAttribute("data-info");
-    var info_dict = JSON.parse(info_val);
-    console.log(info_dict['price']);
-
-    var orig_price = parseInt(info_dict['price']);
     var new_price = sold_row.getElementsByClassName("sold_price_input_" + item_code)["0"].value;
     var quantity = sold_row.getElementsByClassName("sold_quantity_input_" + item_code)["0"].value
     var totalRowElem = sold_row.getElementsByClassName("sold_total_" + item_code)["0"];
 
-    origTotal = parseInt(quantity) * parseInt(orig_price);
-    newTotal = parseInt(quantity) * parseInt(new_price);
+    var newTotal = parseFloat(quantity) * parseFloat(new_price);
     totalRowElem.textContent = newTotal
 
+
+    var finalTotal = 0;
+    var soldTable = document.getElementById("soldTable");
+    var r = 0, row;
+    while(row = soldTable.rows[r++]) {
+        var c = 0, cell;
+        while(cell = row.cells[c++]) {
+            if (cell.className.startsWith('sold_total_')) {
+                finalTotal += parseFloat(cell.textContent);
+            }
+        }
+    }
+    console.log(finalTotal);
+    finalTotalElem.textContent = finalTotal;
+}
+
+function handlesaleItemQuantityReEntered(sold_row, item_code, finalTotalElem, new_sale_val) {
+
+    var info_val = sold_row.getAttribute("data-info");
+    var info_dict = JSON.parse(info_val);
+
     sold_row.removeAttribute("data-info");
-    info_dict['price'] = new_price;
+    info_dict['quantity'] = new_sale_val.join(" ");
     info_val = JSON.stringify(info_dict);
     sold_row.setAttribute('data-info', info_val);
 
+    old_sale_val = info_dict['quantity'];
 
-    var origFinalTotal = parseInt(finalTotalElem.textContent)
-    var newFinalTotal = origFinalTotal - origTotal + newTotal
-    finalTotalElem.textContent = newFinalTotal
+    var totalRowElem = sold_row.getElementsByClassName("sold_total_" + item_code)["0"];
+    var price = sold_row.getElementsByClassName("sold_price_input_" + item_code)["0"].value;
+    var newTotal = parseFloat(new_sale_val[0]) * parseFloat(price);
+    totalRowElem.textContent = newTotal
+
+
+    var sold_inputElem = sold_row.getElementsByClassName('sold_quantity_input_' + item_code)["0"];
+    sold_inputElem.value = new_sale_val.join("  ");
+
+    var finalTotal = 0;
+    var soldTable = document.getElementById("soldTable");
+    var r = 0, row;
+    while(row = soldTable.rows[r++]) {
+        var c = 0, cell;
+        while(cell = row.cells[c++]) {
+            if (cell.className.startsWith('sold_total_')) {
+                finalTotal += parseFloat(cell.textContent);
+            }
+        }
+    }
+    console.log(finalTotal);
+    finalTotalElem.textContent = finalTotal;
+
+
 }
 
 
@@ -82,11 +116,13 @@ function setSolditem(sale_val, item_code, price, data) {
 
     var itemAlreadyAdded = soldTable.getElementsByClassName('sold_tr_' + item_code);
     if (itemAlreadyAdded.length > 0) {
+        handlesaleItemQuantityReEntered(itemAlreadyAdded["0"] , item_code, last_td, sale_val);
         return true;
+
     }
 
     var tr = document.createElement("TR");
-    data['price'] = price;
+    data['quantity'] = sale_val.join("  ");
     data = JSON.stringify(data);
     tr.setAttribute('data-info', data);
     tr.className = 'sold_tr_' + item_code;
@@ -97,7 +133,11 @@ function setSolditem(sale_val, item_code, price, data) {
     sold_input.setAttribute("type", "text");
     sold_input.className = 'sold_quantity_input_' + item_code;
     sold_input.size = 7;
-    sold_input.onfocusout = handleSoldItemEvent;
+    sold_input.addEventListener('focusout', function () {
+        handleSoldItemChangeEvent(tr, item_code, last_td);
+    });
+
+
     sold_input.value = sale_val.join("  ");
     sold_input.style.textAlign = "right";
     td1.append(sold_input);
@@ -114,11 +154,10 @@ function setSolditem(sale_val, item_code, price, data) {
     sold_price_input.setAttribute("type", "text");
     sold_price_input.className = 'sold_price_input_' + item_code;
     sold_price_input.size = 7;
-    //sold_price_input.onfocusout = handleSoldItemPriceChangeEvent;
     sold_price_input.addEventListener('focusout', function () {
-        handleSoldItemPriceChangeEvent(tr, item_code, last_td);
+        handleSoldItemChangeEvent(tr, item_code, last_td);
     });
-    sold_price_input.value = parseInt(price);
+    sold_price_input.value = parseFloat(price);
     sold_price_input.style.textAlign = "left";
     td3.append(sold_price_input);
     tr.append(td3);
@@ -126,10 +165,10 @@ function setSolditem(sale_val, item_code, price, data) {
 
     var td4 = document.createElement("TD");
     td4.className = 'sold_total_' + item_code;
-    td4.textContent = parseInt(price) * parseInt(sale_val[0]);
+    td4.textContent = parseFloat(price) * parseFloat(sale_val[0]);
     tr.append(td4);
 
-    last_td.textContent = parseInt(last_td.textContent) + parseInt(td4.textContent);
+    last_td.textContent = parseFloat(last_td.textContent) + parseFloat(td4.textContent);
 
     last_tr.before(tr);
 
@@ -157,7 +196,7 @@ function saleItemSelected(item_code) {
     var info_dict = JSON.parse(info_val);
 
     var valid_units = info_dict['wu'].split(',');
-    var stock_quantity = parseInt(info_dict['quantity'], 10);
+    var stock_quantity = parseFloat(info_dict['quantity'], 10);
     var ret = '2 ' + valid_units;
     var valid_input = false;
 
@@ -165,7 +204,7 @@ function saleItemSelected(item_code) {
 
         if (isInt(sale_val[0])) {
 
-            var sale_quantity = parseInt(sale_val[0], 10);
+            var sale_quantity = parseFloat(sale_val[0], 10);
             if (sale_quantity <= 0) {
                 ret = saleInputElem.value;
 
