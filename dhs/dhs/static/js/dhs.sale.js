@@ -45,6 +45,10 @@ function handleSoldItemEvent(item_code) {
     console.log(item_code);
 }
 
+function handleSoldItemPriceChangeEvent(item_code) {
+    console.log(item_code);
+}
+
 function setSolditem(sale_val, item_code, price, data) {
 
     var soldTable = document.getElementById("soldTable");
@@ -70,8 +74,18 @@ function setSolditem(sale_val, item_code, price, data) {
     tr.append(td2);
 
     var td3 = document.createElement("TD");
-    td3.textContent = price;
+    // td3.textContent = price;
+    //tr.append(td3);
+    var sold_price_input = document.createElement("INPUT");
+    sold_price_input.setAttribute("type", "text");
+    sold_price_input.className = 'sold_price_input_' + item_code;
+    sold_price_input.size = 7;
+    sold_price_input.onfocusout = handleSoldItemPriceChangeEvent;
+    sold_price_input.value = parseInt(price);
+    sold_price_input.style.textAlign = "left";
+    td3.append(sold_price_input);
     tr.append(td3);
+
 
     var td4 = document.createElement("TD");
     td4.textContent = parseInt(price) * parseInt(sale_val[0]);
