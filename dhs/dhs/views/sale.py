@@ -15,11 +15,15 @@ def sale(request):
     try:
         query = request.dbsession.query(Products)
         for x in query.all():
+            price_str = "".join(x.price.split());
+            p = price_str.split(',')[0].split('=')
+            p = p[1] + ' /' + p[0]
+
             d = {'item_code': x.item_code,
-                 'price': x.price,
-                 'data': {"wu": x.weighing_units,
-                          "wr": x.weight_relationship,
-                          "quantity": x.quantity}
+                 'price': p,
+                 'data': {"wr": x.weight_relationship,
+                          "quantity": x.quantity,
+                          "prices": price_str}
                 }
 
             product_list.append(d)

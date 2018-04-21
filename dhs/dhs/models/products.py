@@ -14,7 +14,6 @@ class Products(Base):
     id = Column(Integer, primary_key=True)
     group_id = Column(Text)
     item_code = Column(Text)
-    weighing_units = Column(Text)
     weight_relationship = Column(Text)
     quantity = Column(Text)
     cost = Column(Text)

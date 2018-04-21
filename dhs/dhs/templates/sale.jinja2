@@ -12,7 +12,7 @@
               <tr class="header">
                 <th style="aligh:left;">Quantity</th>
                 <th style="aligh:left;">Description</th>
-                <th style="aligh:left;">Price</th>
+                <th style="aligh:left;">Unit Price</th>
               </tr>
               {% for item in result %}
                 <tr id="{{item.item_code}}">
@@ -55,7 +55,7 @@
 
         <input type="text" class="searchInput" onkeyup="product_search()" placeholder="name...">
 
-        <div id="soldTableDiv" style="overflow-y:scroll;height:450px;">
+        <div id="soldTableDiv" style="overflow-y:scroll;height:400px;">
             <table id="soldTable" class="boxshadow saleTableStyle" border="1">
               <tr class="header">
                 <th style="aligh:left;">Quantity</th>
@@ -72,5 +72,6 @@
               </tr>
             </table>
         </div>
+        <input type="submit" id="saleSubmit"">
     </div>
 </div>

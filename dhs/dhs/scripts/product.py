@@ -7,11 +7,10 @@ class Product(object):
     PRODUCTS_LST = []
     EXISTING_ITMS = []
 
-    def __init__(self, group_id, item, weighing_units, weight_relationship,
+    def __init__(self, group_id, item, weight_relationship,
                  initial_stock, price, minimum_threshhold, company):
         self._group_id = group_id
         self._item_code = item
-        self._weighing_units = weighing_units
         self._weight_relationship = weight_relationship
         self._initial_stock = initial_stock
         self._cost = ""
@@ -20,21 +19,21 @@ class Product(object):
         self._company = company
 
     def __str__(self):
-        s = ("{} {} {} {} {} {} {} {}"
+        s = ("{} {} {} {} {} {} {}"
              .format(self._group_id, self._item_code,
-                     self._weighing_units, self._weight_relationship,
+                     self._weight_relationship,
                      self._initial_stock, self._cost, self._price,
                      self._minimum_threshhold, self._company))
         return s
 
     def sql_str(self):
-        s = ("INSERT into products (`group_id`, `item_code`, `weighing_units`, "
+        s = ("INSERT into products (`group_id`, `item_code`, "
              "`weight_relationship`, `quantity`, `cost`, `price`, "
              "`minimum_threshhold`, `company`) VALUES ( "
              "\"{}\", \"{}\",  \"{}\", \"{}\", "
-             "\"{}\", \"{}\", \"{}\", \"{}\", \"{}\")"
+             "\"{}\", \"{}\", \"{}\", \"{}\")"
              .format(self._group_id, self._item_code,
-                     self._weighing_units, self._weight_relationship,
+                     self._weight_relationship,
                      self._initial_stock, self._cost, self._price,
                      self._minimum_threshhold, self._company))
         return s
