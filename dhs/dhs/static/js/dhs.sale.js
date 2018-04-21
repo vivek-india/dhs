@@ -140,7 +140,11 @@ function handlesaleItemQuantityReEntered(sold_row, item_code, finalTotalElem, ne
     old_sale_val = info_dict['quantity'];
 
     var totalRowElem = sold_row.getElementsByClassName("sold_total_" + item_code)["0"];
-    var price = sold_row.getElementsByClassName("sold_price_input_" + item_code)["0"].value;
+    var priceElem = sold_row.getElementsByClassName("sold_price_input_" + item_code)["0"];
+    var price = getPriceAsperUnit(new_sale_val, "", info_val);
+    priceElem.value = price;
+
+
     var newTotal = parseFloat(new_sale_val[0]) * parseFloat(price);
     totalRowElem.textContent = newTotal
 
@@ -189,11 +193,11 @@ function setSolditem(sale_val, item_code, price, data) {
     var last_td = last_tr.getElementsByClassName('total_td')["0"];
 
 
-    //var itemAlreadyAdded = soldTable.getElementsByClassName('sold_tr_' + item_code);
-    //if (itemAlreadyAdded.length > 0) {
-    //    handlesaleItemQuantityReEntered(itemAlreadyAdded["0"] , item_code, last_td, sale_val);
-    //    return true;
-    //}
+    var itemAlreadyAdded = soldTable.getElementsByClassName('sold_tr_' + item_code);
+    if (itemAlreadyAdded.length > 0) {
+        handlesaleItemQuantityReEntered(itemAlreadyAdded["0"] , item_code, last_td, sale_val);
+        return true;
+    }
 
     var tr = document.createElement("TR");
     data['quantity'] = sale_val.join("  ");
