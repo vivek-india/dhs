@@ -33,3 +33,9 @@ def sale(request):
 
 
     return {'result': product_list, 'error': err_msg }
+
+@view_config(route_name='sale_create', renderer='json', request_method='POST')
+def sale_create(request):
+
+    print request.json
+    return {'result': "ok", 'error': None}

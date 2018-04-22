@@ -53,7 +53,7 @@ function now()
   return output;
 }
 
-document.getElementById('datetime').innerHTML = now();
+document.getElementById('today_date').innerHTML = now();
 
 function isInt(value) {
   return !isNaN(value) &&
@@ -348,4 +348,77 @@ function saleItemSelected(item_code) {
     //console.log(sale_val)
     //console.log(price)
     //console.log(info_dict)
+}
+
+function OrderHeader() {
+
+    var customerNameElem = document.getElementById("customer_name");
+    this.customerName = customerNameElem.value;
+
+    var orderIdElem = document.getElementById("order_id");
+    this.orderId = orderIdElem.value;
+
+    var transportNameElem = document.getElementById("transport_name");
+    this.transportName = transportNameElem.value;
+
+    var todayDateElem = document.getElementById("today_date");
+    this.todayDate = todayDateElem.textContent;
+
+    this.serialize = function() {
+        ret = {"customer_name": this.customerName,
+               "order_id": this.orderId,
+               "transport_name": this.transportName,
+               "order_date": this.todayDate};
+        return (JSON.stringify(ret));
+    };
+}
+
+
+function OrderItem(sold_quantity, item_code,
+                   sold_unit_price, sold_unit_total) {
+
+    this.sold_quantity = sold_quantity;
+    this.item_code = item_code;
+    this.sold_unit_price = sold_unit_price;
+    this.sold_unit_total = sold_unit_total;
+
+    this.serialize = function() {
+        ret = {"sold_quantity": this.sold_quantity,
+               "item_code": this.item_code,
+               "sold_unit_price": this.sold_unit_price,
+               "sold_unit_total": this.sold_unit_total};
+        return (JSON.stringify(ret));
+    };
+}
+
+function processOrderForm() {
+    var oh = new OrderHeader();
+    var orderedItems = [];
+
+
+    var soldTableElem = document.getElementById("soldTable");
+    tr = soldTableElem.getElementsByTagName("tr");
+    for (i = 1; i < tr.length-1; i++) {
+        td = tr[i].getElementsByTagName("td");
+
+        var sold_quantity = td["0"].childNodes["0"].value;
+        var item_code = td[1].textContent;
+        var sold_unit_price = td[2].childNodes["0"].value;
+        var sold_unit_total = td[3].textContent;
+
+        var oi = new OrderItem(sold_quantity, item_code,
+                               sold_unit_price, sold_unit_total);
+        orderedItems.push(oi.serialize());
+    }
+
+    var orderForm = JSON.stringify({"order_header": oh.serialize(),
+                                    "order_item": orderedItems});
+
+    //console.log(orderForm);
+
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("POST", "sale/create?t=" + Math.random(), true);
+    xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    xhttp.send(orderForm);
+    console.log(xhttp.responseText);
 }
