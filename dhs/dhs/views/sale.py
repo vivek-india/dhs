@@ -1,7 +1,7 @@
 from pyramid.response import Response
 from pyramid.view import view_config
 from sqlalchemy.exc import DBAPIError
-import transaction
+from dhs.utils import unit_utils as ut
 from ..models import MyModel
 from ..models import Products
 from ..models import SaleOrders
@@ -40,12 +40,11 @@ def sale(request):
 def sale_create(request):
 
     ret = {'result': "", 'error': False}
+    payload = request.json
+    oh = eval(payload["order_header"])
+    oi = payload["order_items"]
+
     try:
-        payload = request.json
-        oh = eval(payload["order_header"])
-        oi = payload["order_items"]
-
-
         soObj = SaleOrders()
         soObj.order_id = oh["order_id"]
         soObj.customer_name = oh["customer_name"]
@@ -56,6 +55,23 @@ def sale_create(request):
         request.dbsession.add(soObj)
         request.dbsession.flush()
         request.dbsession.commit()
+    except Exception as err:
+        ret['result'] = str(err)
+        ret['error'] = True
+
+    # Order is saved now update invetory
+
+    try:
+        for item in oi:
+            item = eval(item)
+            rcvd_item_code = item["item_code"]
+            sold_quantity = item["sold_quantity"]
+
+            query = request.dbsession.query(Products)
+            prd = query.filter(Products.item_code == rcvd_item_code).first()
+            utObj = ut.UnitUtils(prd.weight_relationship)
+            prd.quantity = utObj.subtract(prd.quantity, sold_quantity)
+
     except Exception as err:
         ret['result'] = str(err)
         ret['error'] = True
