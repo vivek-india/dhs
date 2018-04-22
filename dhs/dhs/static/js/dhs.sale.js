@@ -412,7 +412,7 @@ function processOrderForm() {
     }
 
     var orderForm = JSON.stringify({"order_header": oh.serialize(),
-                                    "order_item": orderedItems});
+                                    "order_items": orderedItems});
 
     //console.log(orderForm);
 

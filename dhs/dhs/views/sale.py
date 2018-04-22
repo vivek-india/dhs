@@ -1,8 +1,10 @@
 from pyramid.response import Response
 from pyramid.view import view_config
 from sqlalchemy.exc import DBAPIError
+import transaction
 from ..models import MyModel
 from ..models import Products
+from ..models import SaleOrders
 
 
 # @view_config(route_name='products', renderer='json')
@@ -37,5 +39,25 @@ def sale(request):
 @view_config(route_name='sale_create', renderer='json', request_method='POST')
 def sale_create(request):
 
-    print request.json
-    return {'result': "ok", 'error': None}
+    ret = {'result': "", 'error': False}
+    try:
+        payload = request.json
+        oh = eval(payload["order_header"])
+        oi = payload["order_items"]
+
+
+        soObj = SaleOrders()
+        soObj.order_id = oh["order_id"]
+        soObj.customer_name = oh["customer_name"]
+        soObj.transport_name = oh["transport_name"]
+        soObj.order_date = oh["order_date"]
+        soObj.order_items = str(oi)
+
+        request.dbsession.add(soObj)
+        request.dbsession.flush()
+        request.dbsession.commit()
+    except Exception as err:
+        ret['result'] = str(err)
+        ret['error'] = True
+
+    return ret
