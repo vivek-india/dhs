@@ -417,8 +417,27 @@ function processOrderForm() {
     //console.log(orderForm);
 
     var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            var resp = JSON.parse(this.responseText);
+            if (resp["error"] == true) {
+                console.log(resp["result"]);
+                alert("Sale Order Creation FAILED!!!. Please do manual billing");
+            } else {
+                alert(resp["result"]);
+
+                var j = tr.length-1;
+                for (i = 1; i < j; i++) {
+                    tr[1].parentNode.removeChild(tr[1]);
+                }
+                var last_tr = soldTableElem.getElementsByClassName('total_tr')["0"];
+                var last_td = last_tr.getElementsByClassName('total_td')["0"];
+                last_td.textContent = 0;
+            }
+        }
+    };
+
     xhttp.open("POST", "sale/create?t=" + Math.random(), true);
     xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     xhttp.send(orderForm);
-    console.log(xhttp.responseText);
 }

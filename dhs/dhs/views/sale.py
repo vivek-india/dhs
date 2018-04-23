@@ -53,11 +53,10 @@ def sale_create(request):
         soObj.order_items = str(oi)
 
         request.dbsession.add(soObj)
-        request.dbsession.flush()
-        request.dbsession.commit()
     except Exception as err:
         ret['result'] = str(err)
         ret['error'] = True
+        return ret
 
     # Order is saved now update invetory
 
@@ -75,5 +74,7 @@ def sale_create(request):
     except Exception as err:
         ret['result'] = str(err)
         ret['error'] = True
+        return ret
 
+    ret['result'] = "Order-ID: " + oh["order_id"] + " SUCCESSFUL"
     return ret
