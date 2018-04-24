@@ -39,16 +39,19 @@
             </div>
         </div>
 
+
         <div class="row">
-            <div class="col-sm-1 well" style="height:100%">
-                <ul class="list-unstyled" style="padding:10px;">
-                    <li><a href='#!sale'>Sale</a></li>
-                    <li><a href='#!purchase'>Purchase</a></li>
-                    <li><a href='#!products'>Products</a></li>
+            <div class="col-sm-12" style="height:100%">
+                <ul id="horizontal-list" class="list-unstyled" style="padding-left:10px;padding-top:10px;">
+                    <li style="padding-left:10px;padding-top:10px;"><a href='#!sale'><button type="button"> Sale </button> </a></li>
+                    <li style="padding-left:10px;padding-top:10px;"><a href='#!purchase'><button type="button"> Purchase </button> </a></li>
+                    <li style="padding-left:10px;padding-top:10px;"><a href='#!products'><button type="button"> Products </button> </a></li>
                 </ul>
 
             </div>
-            <div class="col-sm-11 well" style="height:100%">
+        </div>
+        <div class="row">
+            <div class="col-sm-12 well" style="height:100%">
                 <div ng-view> </div>
             </div>
         </div>

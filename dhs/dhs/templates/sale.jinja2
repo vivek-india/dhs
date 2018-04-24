@@ -2,12 +2,11 @@
 <script src='static/js/dhs.sale.js'></script>
 
 
-
 <div>
     <div class="col-sm-3" style="border-right: 1px solid black;">
         <input type="text" id="saleInput" class="searchInput" onkeyup="product_search()" placeholder="name...">
 
-        <div id="saleTableDiv" style="overflow-y:scroll;height:537px;">
+        <div id="saleTableDiv" style="overflow-y:scroll;height:515px;">
             <table id="saleTable" class="saleTableStyle" border="1">
               <tr class="header">
                 <th style="aligh:left;">Quantity</th>
@@ -53,9 +52,9 @@
           </tr>
         </table>
 
-        <input type="text" id="soldInput" class="searchInput" onkeyup="sold_product_search()" placeholder="name...">
+        <input type="text" id="soldInput" class="searchInput" onkeyup="sold_product_search()" placeholder="">
 
-        <div id="soldTableDiv" style="overflow-y:scroll;height:400px;">
+        <div id="soldTableDiv" style="overflow-y:scroll;height:390px;" class="KrutiDev_hindi_text;">
             <table id="soldTable" class="boxshadow saleTableStyle" border="1">
               <tr class="header">
                 <th style="aligh:left;">Quantity</th>
@@ -72,6 +71,6 @@
               </tr>
             </table>
         </div>
-        <button type="button" onclick="processOrderForm();"> Print </button>
+        <button type="button" onclick="processOrderForm();" style="float: right;"> Print </button>
     </div>
 </div>

@@ -80,3 +80,17 @@
 
 .printTableStyle tr.header, .printTableStyle tr:hover {
 }
+
+
+/*
+@font-face {
+  font-family: 'Kruti Dev';
+  src: url('fonts/k010.TTF');
+}
+
+div {
+  font-family: Kruti Dev !important;
+  font-size: 18px !important;
+}
+
+*/
