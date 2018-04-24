@@ -2,7 +2,7 @@
   box-sizing: border-box;
 }
 
-#myInput {
+.searchInput {
   background-position: 10px 10px;
   background-repeat: no-repeat;
   width: 100%;
@@ -12,22 +12,85 @@
   margin-bottom: 12px;
 }
 
-#myTable {
+
+.purchaseTableStyle {
   border-collapse: collapse;
   width: 100%;
   border: 1px solid #ddd;
-  font-size: 16px;
+  font-size: 12px;
+  font-weight: bold;
 }
 
-#myTable th, #myTable td {
+.purchaseTableStyle th, .purchaseTableStyle td {
   text-align: left;
   padding: 10px;
 }
 
-#myTable tr {
+.purchaseTableStyle tr {
   border-bottom: 1px solid #ddd;
 }
 
-#myTable tr.header, #myTable tr:hover {
-  background-color: #f1f1f1;
+.purchaseTableStyle tr.header, .purchaseTableStyle tr:hover {
 }
+
+.boxshadow {
+    position: relative;
+    -moz-box-shadow: 1px 2px 4px rgba(0, 0, 0,0.5);
+    -webkit-box-shadow: 1px 2px 4px rgba(0, 0, 0, .5);
+    box-shadow: 10px 20px 40px rgba(0, 0, 0, .5);
+    padding: 10px;
+}
+
+.purchasedTableHeaderStyle {
+  border-collapse: collapse;
+  border: 1px solid #ddd;
+  width: 100%;
+  font-size: 16px;
+}
+
+.purchasedTableHeaderStyle th, .purchasedTableHeaderStyle td {
+  text-align: left;
+  padding: 10px;
+}
+
+.purchasedTableHeaderStyle tr {
+  border-bottom: 1px solid #ddd;
+}
+
+.purchasedTableHeaderStyle tr.header, .purchasedTableHeaderStyle tr:hover {
+}
+
+.printTableStyle {
+  border-collapse: collapse;
+  border: 1px solid #ddd;
+  font-size: 12px;
+  font-weight: bold;
+  width: 76mm;
+  table-layout: fixed;
+}
+
+.printTableStyle th, .printTableStyle td {
+  text-align: left;
+  padding: 10px;
+}
+
+.printTableStyle tr {
+  border-bottom: 1px solid #ddd;
+}
+
+.printTableStyle tr.header, .printTableStyle tr:hover {
+}
+
+
+/*
+@font-face {
+  font-family: 'Kruti Dev';
+  src: url('fonts/k010.TTF');
+}
+
+div {
+  font-family: Kruti Dev !important;
+  font-size: 18px !important;
+}
+
+*/

@@ -18,6 +18,7 @@ from ..models import (
 from ..models import MyModel
 from ..models import Products
 from ..models import SaleOrders
+from ..models import PurchaseOrders
 
 
 def usage(argv):

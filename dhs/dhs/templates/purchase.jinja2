@@ -2,16 +2,75 @@
 <script src='static/js/dhs.purchase.js'></script>
 
 
+<div>
+    <div class="col-sm-3" style="border-right: 1px solid black;">
+        <input type="text" id="purchaseInput" class="searchInput" onkeyup="product_search()" placeholder="name...">
 
-<div class="col-sm-6">
-    <input type="text" id="myInput" onkeyup="product_search()" placeholder="name...">
+        <div id="purchaseTableDiv" style="overflow-y:scroll;height:515px;">
+            <table id="purchaseTable" class="purchaseTableStyle" border="1">
+              <tr class="header">
+                <th style="aligh:left;">Quantity</th>
+                <th style="aligh:left;">Description</th>
+                <th style="aligh:left;">Unit Price</th>
+              </tr>
+              {% for item in result %}
+                <tr id="{{item.item_code}}">
+                    <td class="data_{{item.item_code}}" data-info="{{item.data}}" align="left">
+                        <input class="quantity_input_{{item.item_code}}" type="text" size="7" onfocusout="purchaseItemSelected('{{item.item_code}}')">
+                    </td>
+                    <td align="left"> {{item.item_code}}</td>
+                    <td class="price_{{item.item_code}}" align="left">{{item.price}}</td>
+                </tr>
+              {% endfor %}
+            </table>
+        </div>
+    </div>
 
-    <table id="myTable">
-      <tr class="header">
-        <th style="width:60%;">Product</th>
-      </tr>
-      {% for item in result %}
-        <tr> <td>{{item}}</td> </tr>
-      {% endfor %}
-    </table>
+    <div class="col-sm-9">
+
+        <table id="purchasedTableHeader" class="purchasedTableHeaderStyle">
+          <tr>
+            <td style="aligh:left;">Name</td>
+            <td style="aligh:left;border-right: 1px solid black;" >
+                <input type="text" id="customer_name">
+            </td>
+            <td style="aligh:right;border-left: 1px solid black;">Order-Id</td>
+            <td style="aligh:left;" >
+                <input type="text" id="order_id">
+            </td>
+          </tr>
+
+          <tr>
+            <td style="aligh:left;">Transport</td>
+            <td style="aligh:left;border-right: 1px solid black;" >
+                <input type="text" id="transport_name">
+            </td>
+            <td style="aligh:right;border-left: 1px solid black;">Date</td>
+            <td id="today_date" style="aligh:left;">
+            </td>
+
+          </tr>
+        </table>
+
+        <input type="text" id="purchasedInput" class="searchInput" onkeyup="purchased_product_search()" placeholder="">
+
+        <div id="purchasedTableDiv" style="overflow-y:scroll;height:390px;" class="KrutiDev_hindi_text;">
+            <table id="purchasedTable" class="boxshadow purchaseTableStyle" border="1">
+              <tr class="header">
+                <th style="aligh:left;">Quantity</th>
+                <th style="aligh:left;">Description</th>
+                <th style="aligh:left;">Unit Price</th>
+                <th style="aligh:left;">Total</th>
+              </tr>
+
+              <tr class="total_tr">
+                <td style="aligh:left;"></td>
+                <td style="aligh:left;"></td>
+                <td style="aligh:left;">Total</td>
+                <td class="total_td" style="aligh:left;">0</td>
+              </tr>
+            </table>
+        </div>
+        <button type="button" onclick="processOrderForm();" style="float: right;"> Print </button>
+    </div>
 </div>
