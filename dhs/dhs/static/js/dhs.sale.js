@@ -411,8 +411,8 @@ function processOrderForm() {
         orderedItems.push(oi.serialize());
     }
 
-    var orderForm = JSON.stringify({"order_header": oh.serialize(),
-                                    "order_items": orderedItems});
+    var orderForm = {"order_header": oh.serialize(),
+                     "order_items": orderedItems};
 
     //console.log(orderForm);
 
@@ -434,10 +434,74 @@ function processOrderForm() {
                 var last_td = last_tr.getElementsByClassName('total_td')["0"];
                 last_td.textContent = 0;
             }
+
+            printBill(orderForm);
         }
     };
 
     xhttp.open("POST", "sale/create?t=" + Math.random(), true);
     xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-    xhttp.send(orderForm);
+    xhttp.send(JSON.stringify(orderForm));
+}
+
+function printBill(orderForm) {
+
+    var oh = JSON.parse(orderForm["order_header"]);
+    var oi = orderForm["order_items"];
+
+    var tbl = document.createElement("TABLE");
+    tbl.className = 'printTableStyle';
+
+    var tr = document.createElement("TR");
+
+    var td1 = document.createElement("TD");
+    td1.textContent = oh["customer_name"];
+    tr.append(td1);
+
+    var td2 = document.createElement("TD");
+    td2.textContent = oh["order_id"];
+    tr.append(td2);
+
+    var td3 = document.createElement("TD");
+    td3.textContent = oh["order_date"];
+    tr.append(td3);
+
+    var td4 = document.createElement("TD");
+    td4.textContent = oh["transport_name"];
+    tr.append(td4);
+
+    tbl.append(tr);
+
+    var i = 0;
+    for (i = 0; i < oi.length; i++) {
+        var item = JSON.parse(oi[i]);
+
+        var tr = document.createElement("TR");
+
+        var td1 = document.createElement("TD");
+        td1.textContent = item["sold_quantity"];
+        tr.append(td1);
+
+        var td2 = document.createElement("TD");
+        td2.textContent = item["item_code"];
+        tr.append(td2);
+
+        var td3 = document.createElement("TD");
+        td3.textContent = item["sold_unit_price"];
+        tr.append(td3);
+
+        var td4 = document.createElement("TD");
+        td4.textContent = item["sold_unit_total"];
+        tr.append(td4);
+
+        tbl.append(tr);
+    }
+
+    var dv = document.createElement("DIV");
+    dv.append(tbl);
+
+    var originalContents = document.body.innerHTML;
+    document.body.innerHTML = dv.innerHTML;
+    window.print();
+    document.body.innerHTML = originalContents;
 }

@@ -4,10 +4,10 @@
 
 
 <div>
-    <div class="col-sm-4" style="border-right: 1px solid black;">
+    <div class="col-sm-3" style="border-right: 1px solid black;">
         <input type="text" id="saleInput" class="searchInput" onkeyup="product_search()" placeholder="name...">
 
-        <div id="saleTableDiv" style="overflow-y:scroll;height:550px;">
+        <div id="saleTableDiv" style="overflow-y:scroll;height:537px;">
             <table id="saleTable" class="saleTableStyle" border="1">
               <tr class="header">
                 <th style="aligh:left;">Quantity</th>
@@ -27,7 +27,7 @@
         </div>
     </div>
 
-    <div class="col-sm-8">
+    <div class="col-sm-9">
 
         <table id="soldTableHeader" class="soldTableHeaderStyle">
           <tr>
@@ -72,6 +72,6 @@
               </tr>
             </table>
         </div>
-        <input type="submit" id="orderSubmit"" onclick="processOrderForm();">
+        <button type="button" onclick="processOrderForm();"> Print </button>
     </div>
 </div>

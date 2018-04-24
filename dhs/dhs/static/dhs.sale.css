@@ -17,7 +17,8 @@
   border-collapse: collapse;
   width: 100%;
   border: 1px solid #ddd;
-  font-size: 16px;
+  font-size: 12px;
+  font-weight: bold;
 }
 
 .saleTableStyle th, .saleTableStyle td {
@@ -57,4 +58,25 @@
 }
 
 .soldTableHeaderStyle tr.header, .soldTableHeaderStyle tr:hover {
+}
+
+.printTableStyle {
+  border-collapse: collapse;
+  border: 1px solid #ddd;
+  font-size: 12px;
+  font-weight: bold;
+  width: 76mm;
+  table-layout: fixed;
+}
+
+.printTableStyle th, .printTableStyle td {
+  text-align: left;
+  padding: 10px;
+}
+
+.printTableStyle tr {
+  border-bottom: 1px solid #ddd;
+}
+
+.printTableStyle tr.header, .printTableStyle tr:hover {
 }
