@@ -175,6 +175,77 @@ class UnitUtils(object):
             
             return self.subtractSingle(fromVal, val)
 
+    def addSingle(self, val1, val2):
+        if val1[1] == val1[1]: #  Same Unit
+            ret = str(val1[0] + val2[0]) + " " + val1[1]
+            ret = self.normalize(ret)
+            return ret
+        else:
+            # If 'val1' is smaller unit and 'val2' is bigger unit
+            if (val1[1] == self._unitA[1]):
+                val1[0] += (self._unitA[0] * val2[0])
+                ret = self.normalize(str(val1[0]) + " " + val1[1])
+                return ret
+            else:
+                # If 'val1' is bigger unit and 'val' is smaller unit
+                val1[0] = (self._unitA[0] * val1[0]) + val2[0]
+                ret = self.normalize(str(val1[0]) + " " + self._unitA[1])
+                return ret
+
+    def add(self, val1, val2):
+
+        val1 = self.normalize(val1)
+        val1 = val1.split(" ")
+
+        val2 = self.normalize(val2)
+        val2 = val2.split(" ")
+
+        if (len(val1) == 2 and len(val2) == 2):
+            val1 = [int(val1[0]), val1[1]]
+            val2 = [int(val2[0]), val2[1]]
+
+            return self.addSingle(val1, val2)
+        elif (len(val1) == 4 and len(val2) == 2):
+            val1 = [int(val1[0]), val1[1], int(val1[2]), val1[3]]
+            val2 = [int(val2[0]), val2[1]];
+
+            #  Convert 'val1's into smaller unit
+            val1[0] = val1[0] * self._unitA[0] + val1[2]
+            val1[1] = val1[3]
+
+            # Convert 'val2's into smaller unit
+            if (val2[1] == self._unitB[1]):
+                val2[0] *= self._unitA[0]
+                val2[1] = self._unitA[1]
+
+            return self.addSingle(val1, val2)
+        elif len(val1) == 2 and len(val2) == 4:
+            val1 = [int(val1[0]), val1[1]]
+            val2 = [int(val2[0]), val2[1], int(val2[2]), val2[3]]
+
+            # Conver 'val2's into smaller unit
+            val2[0] = val2[0] * self._unitA[0] + val2[2]
+            val2[1] = val2[3]
+
+            # Conver 'val1's into smaller unit
+            if (val1[1] == self._unitB[1]):
+                val1[0] *= self._unitA[0]
+                val1[1] = self._unitA[1]
+
+            return self.addSingle(val1, val2)
+        elif (len(val1) == 4 and len(val2) == 4):
+            val1 = [int(val1[0]), val1[1], int(val1[2]), val1[3]]
+            val2 = [int(val2[0]), val2[1], int(val2[2]), val2[3]]
+
+            # Conver 'val1's into smaller unit
+            val1[0] = val1[0] * self._unitA[0] + val1[2]
+            val1[1] = val1[3]
+
+            # Conver 'val2's into smaller unit
+            val2[0] = val2[0] * self._unitA[0] + val2[2]
+            val2[1] = val2[3]
+            
+            return self.addSingle(val1, val2)
 
 
 
@@ -204,3 +275,12 @@ if __name__ == "__main__":
 
     # print obj.subtract("10 Bori 20 Kg", "10 Bori")
     # print obj.subtract("10 Bori 40 Kg", "10 Bori 10 kg")
+    # print obj.subtract("40 Kg 10 Bori ", "10 kg")
+
+    print obj.add("10 Kg", "10 Kg")
+    print obj.add("20 Kg", "10 Kg")
+    print obj.add("20 Kg", "20 Kg")
+    print obj.add("20 Kg 1 Bori", "20 Kg")
+    print obj.add("20 Kg ", "20 Kg 10 Bori")
+    print obj.add("20 Kg 10 bori ", "20 Kg 10 Bori")
+    print obj.add("0 Kg 10 bori ", "70 Kg 10 Bori")
