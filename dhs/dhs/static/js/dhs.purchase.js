@@ -34,6 +34,8 @@ function purchased_product_search() {
   }
 }
 
+var orderIdElem = document.getElementById("order_id");
+orderIdElem.textContent = seconds_since_epoch();
 
 
 /*
@@ -352,7 +354,7 @@ function OrderHeader() {
     this.customerName = customerNameElem.value;
 
     var orderIdElem = document.getElementById("order_id");
-    this.orderId = orderIdElem.value;
+    this.orderId = orderIdElem.textContent;
 
     var transportNameElem = document.getElementById("transport_name");
     this.transportName = transportNameElem.value;
@@ -438,6 +440,10 @@ function processOrderForm() {
     xhttp.open("POST", "purchase/create?t=" + Math.random(), true);
     xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     xhttp.send(JSON.stringify(orderForm));
+
+    // Set order-id for next order.
+    var orderIdElem = document.getElementById("order_id");
+    orderIdElem.textContent = seconds_since_epoch();
 }
 
 function printBill(orderForm) {
