@@ -26,6 +26,15 @@
         .well{
             margin-bottom: 0px;
         }
+        .navbar {
+            position: relative;
+            min-height: 50px;
+            margin-bottom: 0px;
+            border: 1px solid transparent;
+        }
+        a {
+            text-decoration: none; 
+        }
     </style>
 
   </head>
@@ -33,14 +42,63 @@
   <body ng-app = "dhsApp"> 
     {% raw %}
 
-        <div class="row">
+        <!--div class="row">
             <div id="company_header" class="col-sm-12 well" style="background-color:teal;color:white;font-weight:bold;" align="center">
                 Dhanraj Hardware Stores &reg;
             </div>
-        </div>
+        </div-->
 
 
         <div class="row">
+
+                <nav class="navbar navbar-default" style="background-color:black;padding-left:60px;">
+                    <div class="container-fluid">
+
+                        <div class="navbar-header">
+                          <a class="navbar-brand" href="/" style="color:white;">
+                            <!--img alt="Dhanraj Hardware Stores &reg;" src="..."-->
+                            Dhanraj Hardware Stores &reg;
+                          </a>
+                        </div>
+
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+                            <ul class="nav navbar-nav" style="padding-left:80px;">
+
+                              <li class="dropdown" >
+                                <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="color:white;">File<span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                  <li><a href='#!sale'>Sale</a></li>
+                                  <li role="separator" class="divider"></li>
+                                  <li><a href="#!purchase">Purchase</a></li>
+                                  <li role="separator" class="divider"></li>
+                                  <li><a href='#!sale_order'>Sale Order</a></li>
+                                </ul>
+                              </li>
+
+                              <li class="dropdown">
+                                <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="color:white;">Reports<span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                  <li><a href="#!products">Products</a></li>
+                                  <li role="separator" class="divider"></li>
+                                  <li><a href="#">Customer</a></li>
+                                  <li role="separator" class="divider"></li>
+                                  <li><a href="#">Supplier</a></li>
+
+                                </ul>
+                              </li>
+
+                            </ul>
+
+                        </div><!-- /.navbar-collapse -->
+
+                    </div><!-- /.container-fluid -->
+                </nav>
+        </div>
+
+
+        <!--div class="row">
             <div class="col-sm-12" style="height:100%">
                 <ul id="horizontal-list" class="list-unstyled" style="padding-left:10px;padding-top:10px;">
                     <li style="padding-left:10px;padding-top:10px;"><a href='#!sale'><button type="button">Sale</button> </a></li>
@@ -49,11 +107,9 @@
                 </ul>
 
             </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-12 well" style="height:100%">
+        </div-->
+        <div class="row well">
                 <div ng-view> </div>
-            </div>
         </div>
 
     {% endraw %}
