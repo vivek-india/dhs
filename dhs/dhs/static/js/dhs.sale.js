@@ -34,6 +34,10 @@ function sold_product_search() {
   }
 }
 
+function seconds_since_epoch() {
+    return Math.floor( Date.now() / 1000 );
+}
+
 var orderIdElem = document.getElementById("order_id");
 orderIdElem.textContent = seconds_since_epoch();
 
@@ -392,9 +396,6 @@ function OrderItem(sold_quantity, item_code,
     };
 }
 
-function seconds_since_epoch() {
-    return Math.floor( Date.now() / 1000 );
-}
 
 function processOrderForm() {
     var oh = new OrderHeader();
@@ -429,19 +430,12 @@ function processOrderForm() {
                 alert("Sale Order Creation FAILED!!!. Please do manual billing");
             } else {
                 alert(resp["result"]);
-
-                var j = tr.length-1;
-                for (i = 1; i < j; i++) {
-                    tr[1].parentNode.removeChild(tr[1]);
-                }
-                var last_tr = soldTableElem.getElementsByClassName('total_tr')["0"];
-                var last_td = last_tr.getElementsByClassName('total_td')["0"];
-                last_td.textContent = 0;
             }
 
             printBill(orderForm);
         }
     };
+
 
     xhttp.open("POST", "sale/create?t=" + Math.random(), true);
     xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
@@ -450,6 +444,15 @@ function processOrderForm() {
     // Set order-id for next order.
     var orderIdElem = document.getElementById("order_id");
     orderIdElem.textContent = seconds_since_epoch();
+
+    var j = tr.length-1;
+    for (i = 1; i < j; i++) {
+        tr[1].parentNode.removeChild(tr[1]);
+    }
+    var last_tr = soldTableElem.getElementsByClassName('total_tr')["0"];
+    var last_td = last_tr.getElementsByClassName('total_td')["0"];
+    last_td.textContent = 0;
+    return true;
 }
 
 function printBill(orderForm) {
@@ -508,8 +511,15 @@ function printBill(orderForm) {
     var dv = document.createElement("DIV");
     dv.append(tbl);
 
-    var originalContents = document.body.innerHTML;
-    document.body.innerHTML = dv.innerHTML;
-    window.print();
-    document.body.innerHTML = originalContents;
+    printdiv(dv);
+}
+
+function printdiv(divToPrint) {
+
+    newWin = window.open("", "myWindow");
+    newWin.document.open();
+    newWin.document.write('<html><head><style>#in {display:none}</style><body   onload="window.print()">' + divToPrint.innerHTML + '</body></html>');
+    newWin.document.close();
+    setTimeout(function(){newWin.close();}, 10);
+    return true;
 }
