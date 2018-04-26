@@ -445,6 +445,12 @@ function processOrderForm() {
     var orderIdElem = document.getElementById("order_id");
     orderIdElem.textContent = seconds_since_epoch();
 
+    var customerElem = document.getElementById("customer_name");
+    customerElem.value = '';
+
+    var transportElem = document.getElementById("transport_name");
+    transportElem.value = '';
+
     var j = tr.length-1;
     for (i = 1; i < j; i++) {
         tr[1].parentNode.removeChild(tr[1]);
