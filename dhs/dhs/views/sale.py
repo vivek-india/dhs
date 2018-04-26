@@ -51,6 +51,7 @@ def sale_create(request):
         soObj.transport_name = oh["transport_name"]
         soObj.order_date = oh["order_date"]
         soObj.order_items = str(oi)
+        soObj.state = 'CREATED'
 
         request.dbsession.add(soObj)
     except Exception as err:

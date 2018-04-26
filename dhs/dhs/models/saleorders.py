@@ -17,5 +17,6 @@ class SaleOrders(Base):
     customer_name = Column(Text)
     transport_name = Column(Text)
     order_items = Column(Text)
+    state = Column(Text)
 
 Index('saleorders_index', SaleOrders.order_id, unique=True, mysql_length=255)
