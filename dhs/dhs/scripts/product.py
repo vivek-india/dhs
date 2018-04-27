@@ -8,7 +8,7 @@ class Product(object):
     EXISTING_ITMS = []
 
     def __init__(self, group_id, item, weight_relationship,
-                 initial_stock, price, minimum_threshhold, company):
+                 initial_stock, price, minimum_threshhold, company=""):
         self._group_id = group_id
         self._item_code = item
         self._weight_relationship = weight_relationship
